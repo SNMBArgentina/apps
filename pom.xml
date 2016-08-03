@@ -8,22 +8,9 @@
 	<packaging>pom</packaging>
 	<name>UNREDD NFMS portal</name>
 	<modules>
-		<module>core</module>
-		<module>base</module>
 		<module>demo</module>
-		<module>jwebclient-analyzer</module>
-		<module>jwebclient-analyzer-maven-plugin</module>
-		<module>feedback</module>
-		<module>layer-time-sliders</module>
-		<module>geoexplorer-reader</module>
 		<module>integration-tests</module>
-		<module>time-slider</module>
-		<module>language-buttons</module>
 		<module>argentina</module>
-		<module>tour</module>
-		<module>footnote</module>
-		<module>layer-order</module>
-		<module>layers-editor</module>
 		<module>examples</module>
 	</modules>
 	<properties>

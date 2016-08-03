@@ -1,9 +1,0 @@
-{
-	"default-conf": {
-		"footnote": {
-			"text": "footnote.text",
-			"link": "http://snmb-desarrollo.readthedocs.org/",
-			"align": "center"
-		}
-	}
-}
