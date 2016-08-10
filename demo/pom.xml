@@ -6,11 +6,12 @@
 	<parent>
 		<groupId>org.fao.unredd</groupId>
 		<artifactId>apps-root</artifactId>
-		<version>4.0.2</version>
+		<version>5.0-SNAPSHOT</version>
 	</parent>
 	<packaging>war</packaging>
 	<artifactId>demo</artifactId>
 	<name>demo</name>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -20,59 +21,59 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>core</artifactId>
-			<version>4.0.2</version>
+			<version>${core.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>base</artifactId>
-			<version>4.0.2</version>
+			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>layers-editor</artifactId>
-			<version>4.0.2</version>
+			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>footnote</artifactId>
-			<version>4.0.2</version>
+			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>feedback</artifactId>
-			<version>4.0.2</version>
+			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>layer-time-sliders</artifactId>
-			<version>4.0.2</version>
+			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>language-buttons</artifactId>
-			<version>4.0.2</version>
+			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>time-slider</artifactId>
-			<version>4.0.2</version>
+			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>tour</artifactId>
-			<version>4.0.2</version>
+			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>layer-order</artifactId>
-			<version>4.0.2</version>
+			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>examples</artifactId>
-			<version>4.0.2</version>
+			<version>${project.version}</version>
 		</dependency>
 		<!-- Other deployments may access other databases, so it is responsibility 
 			of the application to include the necessary drivers -->
@@ -183,7 +184,7 @@
 					<plugin>
 						<groupId>org.fao.unredd</groupId>
 						<artifactId>jwebclient-analyzer-maven-plugin</artifactId>
-						<version>4.0.2</version>
+						<version>5.0-SNAPSHOT</version>
 						<executions>
 							<execution>
 								<id>generate-buildconfig</id>

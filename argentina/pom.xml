@@ -20,34 +20,34 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>core</artifactId>
-			<version>4.0.2</version>
+			<version>${core.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>base</artifactId>
-			<version>4.0.2</version>
+			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>feedback</artifactId>
-			<version>4.0.2</version>
+			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>layer-time-sliders</artifactId>
-			<version>4.0.2</version>
+			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>time-slider</artifactId>
-			<version>4.0.2</version>
+			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>tour</artifactId>
-			<version>4.0.2</version>
+			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>ec.gob.dnf.portal</groupId>
@@ -163,7 +163,7 @@
 					<plugin>
 						<groupId>org.fao.unredd</groupId>
 						<artifactId>jwebclient-analyzer-maven-plugin</artifactId>
-						<version>4.0.2</version>
+						<version>5.0-SNAPSHOT</version>
 						<executions>
 							<execution>
 								<id>generate-buildconfig</id>
