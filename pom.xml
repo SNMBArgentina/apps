@@ -10,8 +10,6 @@
 	<modules>
 		<module>demo</module>
 		<module>integration-tests</module>
-		<!-- Disabled since it has an unmet dependency -->
-		<!--<module>argentina</module>-->
 		<module>examples</module>
 	</modules>
 
