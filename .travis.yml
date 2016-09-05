@@ -4,10 +4,9 @@ addons:
   postgresql: "9.3"
 
 before_script:
-  - echo -e "Host nullisland.geomati.co\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - psql -U postgres -c "create database spatialdata"
   - psql -U postgres -d spatialdata -c "create extension postgis"
 
 script:
-- mvn deploy -s deploy-settings.xml
+- mvn verify
 
