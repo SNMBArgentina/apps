@@ -6,6 +6,7 @@
   <group name="portal-style">
     <css>/modules/**.css</css>
     <css>/styles/**.css</css>
+    <css>/theme/**.css</css>
   </group>
 
 </groups>
