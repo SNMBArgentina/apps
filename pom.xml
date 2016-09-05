@@ -41,6 +41,17 @@
 		</pluginRepository>
 	</pluginRepositories>
 
+        <distributionManagement>
+                <repository>
+                        <id>geoladris-releases</id>
+                        <url>scp://nullisland.geomati.co/var/mvn/releases</url>
+                </repository>
+                <snapshotRepository>
+                        <id>geoladris-snapshots</id>
+                        <url>scp://nullisland.geomati.co/var/mvn/snapshots</url>
+                </snapshotRepository>
+        </distributionManagement>
+
 	<build>
 		<plugins>
 			<plugin>
