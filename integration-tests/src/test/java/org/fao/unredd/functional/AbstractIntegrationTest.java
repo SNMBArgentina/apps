@@ -98,7 +98,7 @@ public class AbstractIntegrationTest {
 
 		WebAppContext handler = new WebAppContext();
 		handler.setContextPath("/" + CONTEXT_PATH);
-		handler.setWar("../demo/target/unredd-portal.war");
+		handler.setWar("../demo/target/demo.war");
 		String[] configurations = handler.getConfigurationClasses();
 		ArrayList<String> configurationList = new ArrayList<String>();
 		Collections.addAll(configurationList, configurations);
