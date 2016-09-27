@@ -11,6 +11,7 @@
 		<module>demo</module>
 		<module>integration-tests</module>
 		<module>examples</module>
+		<module>bare</module>
 	</modules>
 
 	<properties>
