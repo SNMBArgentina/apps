@@ -13,17 +13,6 @@
 	<artifactId>bare</artifactId>
 	<name>Geoladris Core App</name>
 
-	<distributionManagement>
-		<repository>
-			<id>geoladris-releases</id>
-			<url>http://nullisland.geomati.co:8082/repository/releases/</url>
-		</repository>
-		<snapshotRepository>
-			<id>geoladris-snapshots</id>
-			<url>http://nullisland.geomati.co:8082/repository/snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.fao.unredd</groupId>
