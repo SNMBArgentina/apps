@@ -8,5 +8,5 @@ before_script:
   - psql -U postgres -d spatialdata -c "create extension postgis"
 
 script:
-- mvn verify
+  - mvn deploy -s deploy-settings.xml
 
