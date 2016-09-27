@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.fao.unredd.apps</groupId>
 	<artifactId>apps-root</artifactId>
-	<version>5.0-SNAPSHOT</version>
+	<version>5.0.0-beta1</version>
 	<packaging>pom</packaging>
 
 	<modules>
@@ -16,8 +16,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<core.version>5.0-SNAPSHOT</core.version>
-		<plugins.version>5.0-SNAPSHOT</plugins.version>
+		<core.version>5.0.0-beta1</core.version>
+		<plugins.version>5.0.0-beta1</plugins.version>
 	</properties>
 
 	<repositories>
