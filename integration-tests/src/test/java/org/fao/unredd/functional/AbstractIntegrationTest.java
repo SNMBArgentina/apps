@@ -40,6 +40,7 @@ import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.fao.unredd.functional.feedback.FeedbackTest;
 import org.fao.unredd.functional.stats.StatsTest;
+import org.geoladris.Environment;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -47,186 +48,178 @@ import org.postgresql.ds.PGSimpleDataSource;
 
 public class AbstractIntegrationTest {
 
-	private static final String CONTEXT_PATH = "portal";
-	private static String dbUrl;
-	private static String dbUser;
-	private static String dbPassword;
-	protected static String testSchema;
+  private static final String CONTEXT_PATH = "portal";
+  private static String dbUrl;
+  private static String dbUser;
+  private static String dbPassword;
+  protected static String testSchema;
 
-	@BeforeClass
-	public static void setupTests() throws IOException {
-		Properties testProperties = new Properties();
-		InputStream stream = FeedbackTest.class
-				.getResourceAsStream("/org/fao/unredd/functional/functional-test.properties");
-		testProperties.load(stream);
-		stream.close();
+  @BeforeClass
+  public static void setupTests() throws IOException {
+    Properties testProperties = new Properties();
+    InputStream stream = FeedbackTest.class
+        .getResourceAsStream("/org/fao/unredd/functional/functional-test.properties");
+    testProperties.load(stream);
+    stream.close();
 
-		dbUrl = testProperties.getProperty("db-url");
-		dbUser = testProperties.getProperty("db-user");
-		dbPassword = testProperties.getProperty("db-password");
-		testSchema = testProperties.getProperty("db-test-schema");
-	}
+    dbUrl = testProperties.getProperty("db-url");
+    dbUser = testProperties.getProperty("db-user");
+    dbPassword = testProperties.getProperty("db-password");
+    testSchema = testProperties.getProperty("db-test-schema");
+  }
 
-	private Server server;
-	private PGSimpleDataSource dataSource;
+  private Server server;
+  private PGSimpleDataSource dataSource;
 
-	@Before
-	public void setup() throws Exception {
-		// Replace password with environment variable
-		File portalPropertiesFile = new File("test_config/portal.properties");
-		String portalProperties = IOUtils
-				.toString(portalPropertiesFile.toURI());
-		portalProperties = portalProperties.replaceAll(
-				Pattern.quote("$password"),
-				System.getenv("ONUREDDMAILPASSWORD"));
-		BufferedOutputStream output = new BufferedOutputStream(
-				new FileOutputStream(portalPropertiesFile));
-		IOUtils.write(portalProperties, output);
-		output.close();
+  @Before
+  public void setup() throws Exception {
+    // Replace password with environment variable
+    File portalPropertiesFile = new File("test_config/" + CONTEXT_PATH + "/portal.properties");
+    String portalProperties = IOUtils.toString(portalPropertiesFile.toURI());
+    portalProperties = portalProperties.replaceAll(Pattern.quote("$password"),
+        System.getenv("ONUREDDMAILPASSWORD"));
+    BufferedOutputStream output =
+        new BufferedOutputStream(new FileOutputStream(portalPropertiesFile));
+    IOUtils.write(portalProperties, output);
+    output.close();
 
-		// Clean the database
-		Class.forName("org.postgresql.Driver");
-		Connection connection = DriverManager.getConnection(dbUrl, dbUser,
-				dbPassword);
-		Statement statement = connection.createStatement();
-		statement.execute("DROP SCHEMA IF EXISTS " + testSchema + " CASCADE");
-		statement.execute("CREATE SCHEMA " + testSchema);
-		connection.close();
+    System.setProperty(Environment.CONFIG_DIR, new File("test_config").getAbsolutePath());
 
-		// Start the server
-		server = new Server();
+    // Clean the database
+    Class.forName("org.postgresql.Driver");
+    Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+    Statement statement = connection.createStatement();
+    statement.execute("DROP SCHEMA IF EXISTS " + testSchema + " CASCADE");
+    statement.execute("CREATE SCHEMA " + testSchema);
+    connection.close();
 
-		WebAppContext handler = new WebAppContext();
-		handler.setContextPath("/" + CONTEXT_PATH);
-		handler.setWar("../demo/target/demo.war");
-		String[] configurations = handler.getConfigurationClasses();
-		ArrayList<String> configurationList = new ArrayList<String>();
-		Collections.addAll(configurationList, configurations);
-		configurationList.add("org.eclipse.jetty.plus.webapp.EnvConfiguration");
-		configurationList
-				.add("org.eclipse.jetty.plus.webapp.PlusConfiguration");
-		handler.setConfigurationClasses(configurationList
-				.toArray(new String[configurationList.size()]));
+    // Start the server
+    server = new Server();
 
-		HandlerCollection handlers = new HandlerCollection();
-		handlers.setHandlers(new Handler[] { handler, new DefaultHandler() });
-		server.setHandler(handlers);
+    WebAppContext handler = new WebAppContext();
+    handler.setContextPath("/" + CONTEXT_PATH);
+    handler.setWar("../demo/target/demo.war");
+    String[] configurations = handler.getConfigurationClasses();
+    ArrayList<String> configurationList = new ArrayList<String>();
+    Collections.addAll(configurationList, configurations);
+    configurationList.add("org.eclipse.jetty.plus.webapp.EnvConfiguration");
+    configurationList.add("org.eclipse.jetty.plus.webapp.PlusConfiguration");
+    handler
+        .setConfigurationClasses(configurationList.toArray(new String[configurationList.size()]));
 
-		SocketConnector connector = new SocketConnector();
-		connector.setPort(8880);
-		server.setConnectors(new Connector[] { connector });
+    HandlerCollection handlers = new HandlerCollection();
+    handlers.setHandlers(new Handler[] {handler, new DefaultHandler()});
+    server.setHandler(handlers);
 
-		dataSource = new PGSimpleDataSource();
-		dataSource.setUser(dbUser);
-		dataSource.setPassword(dbPassword);
-		dataSource.setUrl(dbUrl);
-		new Resource(handler, "jdbc/unredd-portal", dataSource);
+    SocketConnector connector = new SocketConnector();
+    connector.setPort(8880);
+    server.setConnectors(new Connector[] {connector});
 
-		server.start();
+    dataSource = new PGSimpleDataSource();
+    dataSource.setUser(dbUser);
+    dataSource.setPassword(dbPassword);
+    dataSource.setUrl(dbUrl);
+    new Resource(handler, "jdbc/unredd-portal", dataSource);
 
-		// Install data tables in integration_tests
-		SQLExecute(getScript("redd_feedback.sql").replaceAll("redd_feedback",
-				"integration_tests.redd_feedback"));
-		SQLExecute(getScript("redd_stats_metadata.sql").replaceAll(
-				"CREATE TABLE ", "CREATE TABLE integration_tests."));
-		// Install functions in public
-		executeDelimitedScript("redd_stats_calculator.sql");
-		SQLExecute(getScript("redd_stats_fajas.sql").replaceAll(
-				"redd_stats_fajas", "integration_tests.redd_stats_fajas"));
+    server.start();
 
-		// Install test data
-		executeLines("data.sql", "schemaName", testSchema);
-	}
+    // Install data tables in integration_tests
+    SQLExecute(getScript("redd_feedback.sql").replaceAll("redd_feedback",
+        "integration_tests.redd_feedback"));
+    SQLExecute(getScript("redd_stats_metadata.sql").replaceAll("CREATE TABLE ",
+        "CREATE TABLE integration_tests."));
+    // Install functions in public
+    executeDelimitedScript("redd_stats_calculator.sql");
+    SQLExecute(getScript("redd_stats_fajas.sql").replaceAll("redd_stats_fajas",
+        "integration_tests.redd_stats_fajas"));
 
-	@After
-	public void stop() throws Exception {
-		server.stop();
-	}
+    // Install test data
+    executeLines("data.sql", "schemaName", testSchema);
+  }
 
-	protected Object SQLQuery(String sql) throws SQLException {
-		Connection connection = dataSource.getConnection();
-		Statement statement = connection.createStatement();
-		ResultSet resultSet = statement.executeQuery(sql);
-		assertTrue(resultSet.next());
-		Object ret = resultSet.getObject(1);
-		resultSet.close();
-		statement.close();
-		connection.close();
-		return ret;
-	}
+  @After
+  public void stop() throws Exception {
+    server.stop();
+  }
 
-	protected void SQLExecute(String sql) throws SQLException {
-		Connection connection = dataSource.getConnection();
-		Statement statement = connection.createStatement();
-		statement.execute(sql);
-		statement.close();
-		connection.close();
-	}
+  protected Object SQLQuery(String sql) throws SQLException {
+    Connection connection = dataSource.getConnection();
+    Statement statement = connection.createStatement();
+    ResultSet resultSet = statement.executeQuery(sql);
+    assertTrue(resultSet.next());
+    Object ret = resultSet.getObject(1);
+    resultSet.close();
+    statement.close();
+    connection.close();
+    return ret;
+  }
 
-	/**
-	 * Executes statements delimited by --- in the specified resource.
-	 */
-	private void executeDelimitedScript(String resourceName)
-			throws IOException, SQLException {
-		String script = getScript(resourceName);
-		String[] lines = script.split(Pattern.quote("---"));
-		for (String line : lines) {
-			executeSQLStatement(line);
-		}
-	}
+  protected void SQLExecute(String sql) throws SQLException {
+    Connection connection = dataSource.getConnection();
+    Statement statement = connection.createStatement();
+    statement.execute(sql);
+    statement.close();
+    connection.close();
+  }
 
-	protected String getScript(String resourceName) throws IOException {
-		InputStream stream = StatsTest.class.getResourceAsStream(resourceName);
-		String script = IOUtils.toString(stream);
-		stream.close();
-		return script;
-	}
+  /**
+   * Executes statements delimited by --- in the specified resource.
+   */
+  private void executeDelimitedScript(String resourceName) throws IOException, SQLException {
+    String script = getScript(resourceName);
+    String[] lines = script.split(Pattern.quote("---"));
+    for (String line : lines) {
+      executeSQLStatement(line);
+    }
+  }
 
-	private void executeSQLStatement(String script, String... params)
-			throws SQLException {
-		for (int i = 0; i < params.length; i += 2) {
-			script = script.replaceAll(Pattern.quote("$" + params[i]),
-					params[i + 1]);
-		}
-		SQLExecute(script);
-	}
+  protected String getScript(String resourceName) throws IOException {
+    InputStream stream = StatsTest.class.getResourceAsStream(resourceName);
+    String script = IOUtils.toString(stream);
+    stream.close();
+    return script;
+  }
 
-	protected void executeLines(String resourceName, String... params)
-			throws IOException, SQLException {
-		InputStream stream = StatsTest.class.getResourceAsStream(resourceName);
-		BufferedReader reader = new BufferedReader(
-				new InputStreamReader(stream));
-		String line = null;
-		while ((line = reader.readLine()) != null) {
-			executeSQLStatement(line, params);
-		}
+  private void executeSQLStatement(String script, String... params) throws SQLException {
+    for (int i = 0; i < params.length; i += 2) {
+      script = script.replaceAll(Pattern.quote("$" + params[i]), params[i + 1]);
+    }
+    SQLExecute(script);
+  }
 
-		stream.close();
-	}
+  protected void executeLines(String resourceName, String... params)
+      throws IOException, SQLException {
+    InputStream stream = StatsTest.class.getResourceAsStream(resourceName);
+    BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+    String line = null;
+    while ((line = reader.readLine()) != null) {
+      executeSQLStatement(line, params);
+    }
 
-	protected CloseableHttpResponse GET(String path, String... parameters)
-			throws ClientProtocolException, IOException {
-		String url = "http://localhost:8880/" + CONTEXT_PATH + "/" + path + "?";
-		for (int i = 0; i < parameters.length; i = i + 2) {
-			url += parameters[i] + "="
-					+ URLEncoder.encode(parameters[i + 1], "UTF-8") + "&";
-		}
-		CloseableHttpClient httpClient = HttpClients.createDefault();
-		HttpGet get = new HttpGet(url);
-		return httpClient.execute(get);
-	}
+    stream.close();
+  }
 
-	protected CloseableHttpResponse POST(String path, String... parameters)
-			throws ClientProtocolException, IOException {
-		String url = "http://localhost:8880/" + CONTEXT_PATH + "/" + path;
-		ArrayList<NameValuePair> parameterList = new ArrayList<NameValuePair>();
-		for (int i = 0; i < parameters.length; i = i + 2) {
-			parameterList.add(new BasicNameValuePair(parameters[i],
-					parameters[i + 1]));
-		}
-		CloseableHttpClient httpClient = HttpClients.createDefault();
-		HttpPost put = new HttpPost(url);
-		put.setEntity(new UrlEncodedFormEntity(parameterList));
-		return httpClient.execute(put);
-	}
+  protected CloseableHttpResponse GET(String path, String... parameters)
+      throws ClientProtocolException, IOException {
+    String url = "http://localhost:8880/" + CONTEXT_PATH + "/" + path + "?";
+    for (int i = 0; i < parameters.length; i = i + 2) {
+      url += parameters[i] + "=" + URLEncoder.encode(parameters[i + 1], "UTF-8") + "&";
+    }
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet get = new HttpGet(url);
+    return httpClient.execute(get);
+  }
+
+  protected CloseableHttpResponse POST(String path, String... parameters)
+      throws ClientProtocolException, IOException {
+    String url = "http://localhost:8880/" + CONTEXT_PATH + "/" + path;
+    ArrayList<NameValuePair> parameterList = new ArrayList<NameValuePair>();
+    for (int i = 0; i < parameters.length; i = i + 2) {
+      parameterList.add(new BasicNameValuePair(parameters[i], parameters[i + 1]));
+    }
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost put = new HttpPost(url);
+    put.setEntity(new UrlEncodedFormEntity(parameterList));
+    return httpClient.execute(put);
+  }
 }
