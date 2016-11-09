@@ -1,0 +1,50 @@
+{
+	"default-server": "http://demo1.geo-solutions.it",
+	"wmsLayers": [
+		{
+			"id": "cycle-osm",
+			"type": "osm",
+			"osmUrls": [
+				"http://a.tile.openstreetmap.org/${z}/${x}/${y}.png",
+				"http://b.tile.openstreetmap.org/${z}/${x}/${y}.png",
+				"http://c.tile.openstreetmap.org/${z}/${x}/${y}.png"
+			],
+			"visible": true
+		},
+		{
+			"id": "blue-marble",
+			"baseUrl": "http://rdc-snsf.org/diss_geoserver/wms",
+			"wmsName": "unredd:blue_marble",
+			"imageFormat": "image/jpeg"
+		}
+	],
+	"portalLayers": [
+		{
+			"id": "blue-marble",
+			"active": false,
+			"label": "Blue marble",
+			"layers": [
+				"blue-marble"
+			]
+		},
+		{
+			"id": "osm-layer",
+			"active": true,
+			"label": "Open Cycle Map",
+			"layers": [
+				"cycle-osm"
+			]
+		}
+	],
+	"groups": [
+		{
+			"id": "base",
+			"label": "${base_layers}",
+			"infoFile": "base_layers.html",
+			"items": [
+				"blue-marble",
+				"osm-layer"
+			]
+		}
+	]
+}

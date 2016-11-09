@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<!-- GeoSolution's Proxy Servlet -->
+	<context-param>
+		<param-name>proxyPropPath</param-name>
+		<param-value>/proxy.properties</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>HttpProxy</servlet-name>
+		<servlet-class>it.geosolutions.httpproxy.HTTPProxy</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HttpProxy</servlet-name>
+		<url-pattern>/proxy</url-pattern>
+	</servlet-mapping>
+
+	<!-- Database -->
+	<resource-ref>
+		<description>Application database</description>
+		<res-ref-name>jdbc/unredd-portal</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+</web-app>

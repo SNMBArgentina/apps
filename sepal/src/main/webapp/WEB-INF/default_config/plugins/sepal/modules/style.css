@@ -1,0 +1,36 @@
+#sepal-add-file-okbutton {
+	padding: 10px;
+	background: blue;
+	cursor: pointer;
+	display: inline-block;
+	margin: 30px;
+}
+
+#sepal-add-file-okbutton.disabled {
+	background: gray;
+	cursor: default;
+}
+
+.sepal-add-tiff-radio-label {
+	display: inline-block;
+	width: 90%;
+}
+
+.sepal-add-tiff-radio {
+	display: table-cell;
+	width: 5%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.sepal-add-tiff-band-chooser {
+	margin-left: 20px;
+	display: block;
+}
+
+.sepal-add-tiff-band-option-label {
+	float: left;
+	margin-left: 35px;
+	padding: 4px;
+	width: 5em;
+}

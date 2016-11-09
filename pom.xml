@@ -12,6 +12,7 @@
 		<module>integration-tests</module>
 		<module>examples</module>
 		<module>bare</module>
+		<module>sepal</module>
 	</modules>
 
 	<properties>
