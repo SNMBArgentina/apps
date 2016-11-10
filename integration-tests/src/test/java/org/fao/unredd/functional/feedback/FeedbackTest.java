@@ -66,7 +66,7 @@ public class FeedbackTest extends AbstractIntegrationTest {
 				+ ".redd_feedback SET state=2 WHERE verification_code='"
 				+ verificationCode + "'");
 		synchronized (this) {
-			wait(4000);
+			wait(6000);
 		}
 
 		// Check the entry has been marked as "notified"

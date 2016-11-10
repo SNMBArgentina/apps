@@ -191,7 +191,7 @@
 					<plugin>
 						<groupId>org.fao.unredd</groupId>
 						<artifactId>jwebclient-analyzer-maven-plugin</artifactId>
-						<version>5.0-SNAPSHOT</version>
+						<version>${core.version}</version>
 						<executions>
 							<execution>
 								<id>generate-buildconfig</id>
