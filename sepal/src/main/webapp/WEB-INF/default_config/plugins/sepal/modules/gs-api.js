@@ -3,37 +3,48 @@ define([ "jquery", "message-bus", "./utils" ], function($, bus, utils) {
 	var BASE_URL = "http://admin:geoserver@localhost:8080/geoserver/rest";
 	var WORKSPACE = "files";
 
-	function call(request, method, data, success, error) {
+	function call(request, contentType, method, data, success, error) {
 		$.ajax({
-			dataType : "json",
 			method : method,
 			data : data,
-			contentType : "application/json",
-			url : BASE_URL + "/workspaces/" + WORKSPACE + "/" + request,
+			contentType : contentType,
+			url : BASE_URL + request,
 			success : success,
 			error : error
 		});
 	}
 
-	function get(request, success, error) {
-		call(request, "GET", undefined, success, error);
+	function getJSON(request, success, error) {
+		call(request, "application/json", "GET", undefined, success, error);
 	}
 
-	function post(request, data, success, error) {
-		call(request, "POST", data, success, error);
+	function postJSON(request, data, success, error) {
+		call(request, "application/json", "POST", data, success, error);
 	}
 
-	function loadSHP(layer) {
+	function putSLD(request, data, success, error) {
+		call(request, "application/vnd.ogc.sld+xml", "PUT", data, success, error);
+	}
+
+	function putXML(request, data, success, error) {
+		call(request, "text/xml", "PUT", data, success, error);
+	}
+
+	var zIndex = 100;
+	function loadLayer(layer) {
 		bus.send("add-layer", {
 			"id" : layer,
-			"group" : "admin",
+			"groupId" : "base",
 			"label" : layer,
 			"active" : "true",
-			"wmsLayers" : [ {
+			"mapLayers" : [ {
+				"id" : layer,
 				"baseUrl" : WMS_URL,
-				"wmsName" : WORKSPACE + ":" + layer
+				"wmsName" : WORKSPACE + ":" + layer,
+				"zIndex" : zIndex++
 			} ]
 		});
+		bus.send("layer-visibility", [ layer, true ]);
 	}
 
 	function createSHPLayer(layer) {
@@ -43,11 +54,11 @@ define([ "jquery", "message-bus", "./utils" ], function($, bus, utils) {
 			}
 		}
 
-		post("datastores/" + layer + "/featuretypes.json", JSON.stringify(layerData), function(response) {
-			loadSHP(layer);
+		postJSON("/workspaces/" + WORKSPACE + "/datastores/" + layer + "/featuretypes.json", JSON.stringify(layerData), function(response) {
+			loadLayer(layer);
 		}, function(response) {
 			if (response.status == 201) {
-				loadSHP(layer);
+				loadLayer(layer);
 			} else {
 				// Handle error
 				console.log(response);
@@ -77,7 +88,7 @@ define([ "jquery", "message-bus", "./utils" ], function($, bus, utils) {
 			}
 		};
 
-		post("datastores.json", JSON.stringify(storeData), function(response) {
+		postJSON("/workspaces/" + WORKSPACE + "/datastores.json", JSON.stringify(storeData), function(response) {
 			createSHPLayer(layer);
 		}, function(response) {
 			if (response.status == 201) {
@@ -90,23 +101,250 @@ define([ "jquery", "message-bus", "./utils" ], function($, bus, utils) {
 		});
 	}
 
-	function addSHP(filename) {
-		var layer = utils.getLayerName(filename)
-		get("datastores/" + layer + ".json", function() {
-			// Exists
-			loadSHP(layer);
-		}, function() {
-			// Does not exist
-			createSHPDatastore(filename, layer);
+	function createTIFFLayer(layer, filename, success) {
+		var layerData = {
+			"coverage" : {
+				"name" : layer,
+				"enabled" : true,
+				"store" : {
+					"name" : "files:" + filename,
+				}
+			}
+		};
+
+		var styleData = {
+			"style" : {
+				"name" : layer,
+				"format" : "sld",
+				"languageVersion" : {
+					"version" : "1.0.0"
+				},
+				"filename" : layer + ".sld"
+			}
+		};
+
+		var sld = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\
+			<StyledLayerDescriptor xmlns=\"http://www.opengis.net/sld\" xmlns:ogc=\"http://www.opengis.net/ogc\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/sld\
+			http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd\" version=\"1.0.0\">\
+			  <UserLayer>\
+			    <UserStyle>\
+			      <Name>raster</Name>\
+			      <FeatureTypeStyle>\
+			        <FeatureTypeName>Feature</FeatureTypeName>\
+			        <Rule>\
+			          <RasterSymbolizer>\
+			            <Opacity>1.0</Opacity>\
+			          </RasterSymbolizer>\
+			        </Rule>\
+			      </FeatureTypeStyle>\
+			    </UserStyle>\
+			  </UserLayer>\
+			</StyledLayerDescriptor>";
+
+		var layerAdded = false;
+		var styleAdded = false;
+		var sldAdded = false;
+
+		function added() {
+			var xml = "<layer><defaultStyle><name>" + layer + "</name></defaultStyle></layer>";
+			putXML("/layers/" + layer, xml, function() {
+				success();
+			}, function(response) {
+				if (response.status == 201) {
+					success();
+				} else {
+					window.alert("Cannot add TIFF layer to GeoServer!");
+				}
+			});
+		}
+
+		postJSON("/workspaces/" + WORKSPACE + "/coveragestores/" + layer + "/coverages.json", JSON.stringify(layerData), function(response) {
+			layerAdded = true;
+			if (layerAdded && styleAdded && sldAdded) {
+				added();
+			}
+		}, function(response) {
+			if (response.status == 201) {
+				layerAdded = true;
+				if (layerAdded && styleAdded && sldAdded) {
+					added();
+				}
+			} else {
+				window.alert("Cannot add TIFF layer to GeoServer!");
+			}
+		});
+
+		postJSON("/styles.json", JSON.stringify(styleData), function(response) {
+			styleAdded = true;
+			if (layerAdded && styleAdded && sldAdded) {
+				added();
+			}
+		}, function(response) {
+			if (response.status == 201) {
+				styleAdded = true;
+				if (layerAdded && styleAdded && sldAdded) {
+					added();
+				}
+			} else {
+				window.alert("Cannot add TIFF layer to GeoServer!");
+			}
+		});
+
+		putSLD("/styles/" + layer, sld, function() {
+			sldAdded = true;
+			if (layerAdded && styleAdded && sldAdded) {
+				added();
+			}
+		}, function(response) {
+			if (response.status == 200) {
+				sldAdded = true;
+				if (layerAdded && styleAdded && sldAdded) {
+					added();
+				}
+			} else {
+				window.alert("Cannot add TIFF layer to GeoServer!");
+			}
 		});
 	}
 
-	function getBands(filename, callback) {
-		callback([ "b1", "b2", "b3" ]);
+	function createTIFFCoveragestore(filename, layer, success) {
+		var storeData = {
+			"coverageStore" : {
+				"name" : layer,
+				"type" : "GeoTIFF",
+				"enabled" : true,
+				"workspace" : {
+					"name" : "files",
+				},
+				"url" : "file:" + filename
+			}
+		};
+
+		postJSON("/workspaces/" + WORKSPACE + "/coveragestores.json", JSON.stringify(storeData), function(response) {
+			createTIFFLayer(layer, filename, success);
+		}, function(response) {
+			if (response.status == 201) {
+				createTIFFLayer(layer, filename, success);
+			} else {
+				// Handle error
+				console.log(response);
+				window.alert("Cannot add TIFF coverage store to GeoServer!");
+			}
+		});
+	}
+
+	function getTIFFBands(layer, callback) {
+		getJSON("/workspaces/" + WORKSPACE + "/coveragestores/" + layer + "/coverages/" + layer + ".json", function(response) {
+			callback(response.coverage.dimensions.coverageDimension);
+		}, function(response) {
+			// Handle error
+			console.log(response);
+			window.alert("Cannot obtain TIFF bands!");
+		});
 	}
 
 	return {
-		addSHP : addSHP,
-		getBands : getBands
+		addSHP : function(filename) {
+			var layer = utils.getLayerName(filename)
+			getJSON("/workspaces/" + WORKSPACE + "/datastores/" + layer + ".json", function() {
+				// Exists
+				loadLayer(layer);
+			}, function() {
+				// Does not exist
+				createSHPDatastore(filename, layer);
+			});
+		},
+		getBands : function(filename, callback) {
+			var layer = utils.getLayerName(filename)
+			getJSON("/workspaces/" + WORKSPACE + "/coveragestores/" + layer + ".json", function() {
+				// Exists
+				getTIFFBands(layer, callback)
+			}, function() {
+				// Does not exist
+				createTIFFCoveragestore(filename, layer, function() {
+					getTIFFBands(layer, callback);
+				});
+			});
+		},
+		addTIFF : function(filename, bands) {
+			var layer = utils.getLayerName(filename)
+			if (!bands || bands.length == 0) {
+				// Default
+				loadLayer(layer);
+			} else if (bands.length == 1) {
+				// Grayscale
+				var xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\
+<StyledLayerDescriptor xmlns=\"http://www.opengis.net/sld\" xmlns:ogc=\"http://www.opengis.net/ogc\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/sld\
+http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd\" version=\"1.0.0\">\
+  <UserLayer>\
+    <UserStyle>\
+      <Name>raster</Name>\
+      <FeatureTypeStyle>\
+        <FeatureTypeName>Feature</FeatureTypeName>\
+        <Rule>\
+          <RasterSymbolizer>\
+            <Opacity>1.0</Opacity>\
+            <ChannelSelection>\
+            <GrayChannel>\
+              <SourceChannelName>" + bands[0] + "</SourceChannelName>\
+            </GrayChannel>\
+            </ChannelSelection>\
+          </RasterSymbolizer>\
+        </Rule>\
+      </FeatureTypeStyle>\
+    </UserStyle>\
+  </UserLayer>\
+</StyledLayerDescriptor>"
+				putSLD("/styles/" + layer, xml, function() {
+					loadLayer(layer);
+				}, function(response) {
+					if (response.status == 200) {
+						loadLayer(layer);
+					} else {
+						window.alert("Cannot set TIFF bands!");
+					}
+				});
+			} else if (bands.length == 3) {
+				// RGB
+				var xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\
+<StyledLayerDescriptor xmlns=\"http://www.opengis.net/sld\" xmlns:ogc=\"http://www.opengis.net/ogc\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/sld\
+http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd\" version=\"1.0.0\">\
+  <UserLayer>\
+    <UserStyle>\
+      <Name>raster</Name>\
+      <FeatureTypeStyle>\
+        <FeatureTypeName>Feature</FeatureTypeName>\
+        <Rule>\
+          <RasterSymbolizer>\
+            <Opacity>1.0</Opacity>\
+            <ChannelSelection>\
+			  <RedChannel>\
+			    <SourceChannelName>" + bands[0] + "</SourceChannelName>\
+			  </RedChannel>\
+			  <GreenChannel>\
+			    <SourceChannelName>" + bands[1] + "</SourceChannelName>\
+			  </GreenChannel>\
+			  <BlueChannel>\
+			    <SourceChannelName>" + bands[2]
+						+ "</SourceChannelName>\
+			  </BlueChannel>\
+            </ChannelSelection>\
+          </RasterSymbolizer>\
+        </Rule>\
+      </FeatureTypeStyle>\
+    </UserStyle>\
+  </UserLayer>\
+</StyledLayerDescriptor>"
+				putSLD("/styles/" + layer, xml, function() {
+					loadLayer(layer);
+				}, function(response) {
+					if (response.status == 200) {
+						loadLayer(layer);
+					} else {
+						window.alert("Cannot set TIFF bands!");
+					}
+				});
+			}
+		}
 	}
 });

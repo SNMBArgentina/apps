@@ -27,7 +27,7 @@ define([ "jquery", "message-bus", "toolbar", "./utils", "./gs-api", "jquery-ui" 
 	$("<label class='sepal-add-tiff-radio-label'>Grayscale</label>").appendTo(bandChooser);
 	$("<label class='sepal-add-tiff-band-option-label'>Grayscale: </label>").appendTo(bandChooser);
 	var grayscaleBandChooser = $("<select id='sepal-add-tiff-select-band-grayscale' class='sepal-add-tiff-band-chooser'/>").appendTo(bandChooser);
-	
+
 	var radioRGB = $("<input id='sepal-add-tiff-radio-rgb' class='sepal-add-tiff-radio' type='radio' name='sepal-add-file-band-radio'>").appendTo(bandChooser);
 	$("<label class='sepal-add-tiff-radio-label'>RGB</label>").appendTo(bandChooser);
 	$("<label class='sepal-add-tiff-band-option-label'>Red: </label>").appendTo(bandChooser);
@@ -69,11 +69,10 @@ define([ "jquery", "message-bus", "toolbar", "./utils", "./gs-api", "jquery-ui" 
 		}
 	});
 
-	function showBandChooser(bands) {
-		if (!bands) {
-			return;
-		}
+	var bands;
 
+	function showBandChooser(b) {
+		bands = b;
 		fileChooser.hide();
 		bandChooser.show();
 		okButton.text("Add");
@@ -85,11 +84,11 @@ define([ "jquery", "message-bus", "toolbar", "./utils", "./gs-api", "jquery-ui" 
 		greenBandChooser.empty();
 		blueBandChooser.empty();
 		for (var i = 0; i < bands.length; i++) {
-			var band = bands[i];
-			grayscaleBandChooser.append($("<option value='" + band + "'>" + band + "</option>"));
-			redBandChooser.append($("<option value='" + band + "'>" + band + "</option>"));
-			greenBandChooser.append($("<option value='" + band + "'>" + band + "</option>"));
-			blueBandChooser.append($("<option value='" + band + "'>" + band + "</option>"));
+			var band = bands[i].name;
+			grayscaleBandChooser.append($("<option value='" + i + "'>" + band + "</option>"));
+			redBandChooser.append($("<option value='" + i + "'>" + band + "</option>"));
+			greenBandChooser.append($("<option value='" + i + "'>" + band + "</option>"));
+			blueBandChooser.append($("<option value='" + i + "'>" + band + "</option>"));
 		}
 	}
 
@@ -104,14 +103,30 @@ define([ "jquery", "message-bus", "toolbar", "./utils", "./gs-api", "jquery-ui" 
 			dialog.dialog("close");
 			gs.addSHP(filename);
 		} else if (fileType == utils.TIFF) {
-			if (grayscaleBandChooser.children().length == 0) {
+			if (!bands) {
 				gs.getBands(filename, showBandChooser);
 			} else {
+				dialog.dialog("close");
+
+				if (radioDefaultStyle.is(":checked")) {
+					gs.addTIFF(filename);
+				} else if (radioGrayscale.is(":checked")) {
+					// Band indexes are 1-based
+					var gray = 1 + parseInt(grayscaleBandChooser.children("option:selected").val());
+					gs.addTIFF(filename, [ gray ]);
+				} else if (radioRGB.is(":checked")) {
+					// Band indexes are 1-based
+					var r = 1 + parseInt(redBandChooser.children("option:selected").val());
+					var g = 1 + parseInt(greenBandChooser.children("option:selected").val());
+					var b = 1 + parseInt(blueBandChooser.children("option:selected").val());
+					gs.addTIFF(filename, [ r, g, b ]);
+				}
+
 				grayscaleBandChooser.empty();
 				redBandChooser.empty();
 				greenBandChooser.empty();
 				blueBandChooser.empty();
-				gs.addTIFF();
+				bands = undefined;
 			}
 		}
 	});

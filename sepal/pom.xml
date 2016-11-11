@@ -11,6 +11,11 @@
 	<packaging>war</packaging>
 	<artifactId>sepal-viewer</artifactId>
 
+	<properties>
+		<plugins.version>5.0.0-beta5</plugins.version>
+		<core.version>5.0.0-beta5</core.version>
+	</properties>
+
 	<repositories>
 		<repository>
 			<id>geosolutions</id>
