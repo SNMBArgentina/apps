@@ -3,6 +3,24 @@ define([ "jquery", "message-bus", "./utils" ], function($, bus, utils) {
 	var BASE_URL = "http://admin:geoserver@localhost:8080/geoserver/rest";
 	var WORKSPACE = "files";
 
+	var DEFAULT_STYLE = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\
+		<StyledLayerDescriptor xmlns=\"http://www.opengis.net/sld\" xmlns:ogc=\"http://www.opengis.net/ogc\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/sld\
+		http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd\" version=\"1.0.0\">\
+		  <UserLayer>\
+		    <UserStyle>\
+		      <Name>raster</Name>\
+		      <FeatureTypeStyle>\
+		        <FeatureTypeName>Feature</FeatureTypeName>\
+		        <Rule>\
+		          <RasterSymbolizer>\
+		            <Opacity>1.0</Opacity>\
+		          </RasterSymbolizer>\
+		        </Rule>\
+		      </FeatureTypeStyle>\
+		    </UserStyle>\
+		  </UserLayer>\
+		</StyledLayerDescriptor>";
+
 	function call(request, contentType, method, data, success, error) {
 		$.ajax({
 			method : method,
@@ -123,24 +141,6 @@ define([ "jquery", "message-bus", "./utils" ], function($, bus, utils) {
 			}
 		};
 
-		var sld = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\
-			<StyledLayerDescriptor xmlns=\"http://www.opengis.net/sld\" xmlns:ogc=\"http://www.opengis.net/ogc\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/sld\
-			http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd\" version=\"1.0.0\">\
-			  <UserLayer>\
-			    <UserStyle>\
-			      <Name>raster</Name>\
-			      <FeatureTypeStyle>\
-			        <FeatureTypeName>Feature</FeatureTypeName>\
-			        <Rule>\
-			          <RasterSymbolizer>\
-			            <Opacity>1.0</Opacity>\
-			          </RasterSymbolizer>\
-			        </Rule>\
-			      </FeatureTypeStyle>\
-			    </UserStyle>\
-			  </UserLayer>\
-			</StyledLayerDescriptor>";
-
 		var layerAdded = false;
 		var styleAdded = false;
 		var sldAdded = false;
@@ -190,7 +190,7 @@ define([ "jquery", "message-bus", "./utils" ], function($, bus, utils) {
 			}
 		});
 
-		putSLD("/styles/" + layer, sld, function() {
+		putSLD("/styles/" + layer, DEFAULT_STYLE, function() {
 			sldAdded = true;
 			if (layerAdded && styleAdded && sldAdded) {
 				added();
@@ -268,12 +268,13 @@ define([ "jquery", "message-bus", "./utils" ], function($, bus, utils) {
 		},
 		addTIFF : function(filename, bands) {
 			var layer = utils.getLayerName(filename)
+			var sld;
 			if (!bands || bands.length == 0) {
 				// Default
-				loadLayer(layer);
+				sld = DEFAULT_STYLE;
 			} else if (bands.length == 1) {
 				// Grayscale
-				var xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\
+				sld = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\
 <StyledLayerDescriptor xmlns=\"http://www.opengis.net/sld\" xmlns:ogc=\"http://www.opengis.net/ogc\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/sld\
 http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd\" version=\"1.0.0\">\
   <UserLayer>\
@@ -295,18 +296,9 @@ http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd\" version=\"1.0.0
     </UserStyle>\
   </UserLayer>\
 </StyledLayerDescriptor>"
-				putSLD("/styles/" + layer, xml, function() {
-					loadLayer(layer);
-				}, function(response) {
-					if (response.status == 200) {
-						loadLayer(layer);
-					} else {
-						window.alert("Cannot set TIFF bands!");
-					}
-				});
 			} else if (bands.length == 3) {
 				// RGB
-				var xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\
+				sld = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\
 <StyledLayerDescriptor xmlns=\"http://www.opengis.net/sld\" xmlns:ogc=\"http://www.opengis.net/ogc\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/sld\
 http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd\" version=\"1.0.0\">\
   <UserLayer>\
@@ -335,16 +327,16 @@ http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd\" version=\"1.0.0
     </UserStyle>\
   </UserLayer>\
 </StyledLayerDescriptor>"
-				putSLD("/styles/" + layer, xml, function() {
-					loadLayer(layer);
-				}, function(response) {
-					if (response.status == 200) {
-						loadLayer(layer);
-					} else {
-						window.alert("Cannot set TIFF bands!");
-					}
-				});
 			}
+			putSLD("/styles/" + layer, sld, function() {
+				loadLayer(layer);
+			}, function(response) {
+				if (response.status == 200) {
+					loadLayer(layer);
+				} else {
+					window.alert("Cannot set TIFF bands!");
+				}
+			});
 		}
 	}
 });
