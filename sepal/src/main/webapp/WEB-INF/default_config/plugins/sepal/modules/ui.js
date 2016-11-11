@@ -51,6 +51,8 @@ define([ "jquery", "message-bus", "toolbar", "./utils", "./gs-api", "jquery-ui" 
 		fileChooser.show();
 		bandChooser.hide();
 		okButton.text("Add");
+		bands = undefined;
+		okButton.addClass("disabled");
 		fileInput.val("");
 		dialog.dialog("open");
 	});

@@ -1,9 +1,17 @@
+#sepal-add-file-button {
+	float: left;
+}
+
 #sepal-add-file-okbutton {
+	display: inline-block;
+	left: calc(50% - 40px);
+	position: relative;
+	width: 40px;
+	text-align: center;
 	padding: 10px;
+	margin: 10px 0px;
 	background: blue;
 	cursor: pointer;
-	display: inline-block;
-	margin: 30px;
 }
 
 #sepal-add-file-okbutton.disabled {
@@ -33,4 +41,19 @@
 	margin-left: 35px;
 	padding: 4px;
 	width: 5em;
+}
+
+#sepal-add-file-label {
+	float: left;
+	line-height: 25px;
+	width: 50px;
+}
+
+#sepal-add-file-input {
+	float: left;
+	width: calc(100% - 70px);
+}
+
+#sepal-add-file-dialog-fileChooser {
+	margin: 10px;
 }
