@@ -100,6 +100,12 @@ define([ "jquery", "message-bus", "toolbar", "./utils", "./gs-api", "jquery-ui" 
 		}
 
 		var filename = fileInput.val();
+
+		if (filename.charAt(0) != "/") {
+			window.alert("Only absolute paths allowed");
+			return;
+		}
+
 		var fileType = utils.getFileType(filename);
 		if (fileType == utils.SHP) {
 			dialog.dialog("close");

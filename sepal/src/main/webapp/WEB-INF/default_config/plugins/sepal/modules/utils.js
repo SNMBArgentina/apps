@@ -1,13 +1,13 @@
 define([ "jquery" ], function($) {
 	var SHP = "shp";
-	var TIFF = "tiff";
+	var TIFF = "geotiff";
 
 	function getLayerName(filename) {
 		if (filename.indexOf('.') < 0) {
 			throw "Invalid filename: " + filename;
 		}
 		var name = filename.substring(0, filename.lastIndexOf('.'));
-		return name.replace(/\//g, '_');
+		return name.substring(name.lastIndexOf('/') + 1);
 	}
 
 	function getFileType(filename) {

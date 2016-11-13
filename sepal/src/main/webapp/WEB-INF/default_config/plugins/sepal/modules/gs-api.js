@@ -65,61 +65,21 @@ define([ "jquery", "message-bus", "./utils" ], function($, bus, utils) {
 		bus.send("layer-visibility", [ layer, true ]);
 	}
 
-	function createSHPLayer(layer) {
-		var layerData = {
-			"featureType" : {
-				"name" : layer
-			}
+	function createLayer(filename, layer, type, success) {
+		var url = "/workspaces/" + WORKSPACE;
+		if (type == utils.SHP) {
+			url += "/datastores/";
+		} else if (type == utils.TIFF) {
+			url += "/coveragestores/";
 		}
-
-		postJSON("/workspaces/" + WORKSPACE + "/datastores/" + layer + "/featuretypes.json", JSON.stringify(layerData), function(response) {
-			loadLayer(layer);
-		}, function(response) {
-			if (response.status == 201) {
-				loadLayer(layer);
-			} else {
-				// Handle error
-				console.log(response);
-				window.alert("Cannot add SHP layer to GeoServer!");
-			}
+		url += layer + "/external." + type;
+		call(url, "text/plain", "PUT", "file://" + filename, success, function(response) {
+			console.log(response);
+			window.alert("Cannot add " + type + " layer to GeoServer!");
 		});
 	}
 
-	function createSHPDatastore(filename, layer) {
-		var storeData = {
-			"dataStore" : {
-				"name" : layer,
-				"type" : "Shapefile",
-				"enabled" : true,
-				"workspace" : {
-					"name" : "files"
-				},
-				"connectionParameters" : {
-					"entry" : [ {
-						"@key" : "charset",
-						"$" : "UTF-8"
-					}, {
-						"@key" : "url",
-						"$" : "file:" + filename
-					} ]
-				}
-			}
-		};
-
-		postJSON("/workspaces/" + WORKSPACE + "/datastores.json", JSON.stringify(storeData), function(response) {
-			createSHPLayer(layer);
-		}, function(response) {
-			if (response.status == 201) {
-				createSHPLayer(layer);
-			} else {
-				// Handle error
-				console.log(response);
-				window.alert("Cannot add SHP datastore to GeoServer!");
-			}
-		});
-	}
-
-	function createTIFFLayer(layer, filename, success) {
+	function createTIFFLayer(filename, layer, success) {
 		var layerData = {
 			"coverage" : {
 				"name" : layer,
@@ -158,19 +118,10 @@ define([ "jquery", "message-bus", "./utils" ], function($, bus, utils) {
 			});
 		}
 
-		postJSON("/workspaces/" + WORKSPACE + "/coveragestores/" + layer + "/coverages.json", JSON.stringify(layerData), function(response) {
+		createLayer(filename, layer, utils.TIFF, function() {
 			layerAdded = true;
 			if (layerAdded && styleAdded && sldAdded) {
 				added();
-			}
-		}, function(response) {
-			if (response.status == 201) {
-				layerAdded = true;
-				if (layerAdded && styleAdded && sldAdded) {
-					added();
-				}
-			} else {
-				window.alert("Cannot add TIFF layer to GeoServer!");
 			}
 		});
 
@@ -207,32 +158,6 @@ define([ "jquery", "message-bus", "./utils" ], function($, bus, utils) {
 		});
 	}
 
-	function createTIFFCoveragestore(filename, layer, success) {
-		var storeData = {
-			"coverageStore" : {
-				"name" : layer,
-				"type" : "GeoTIFF",
-				"enabled" : true,
-				"workspace" : {
-					"name" : "files",
-				},
-				"url" : "file:" + filename
-			}
-		};
-
-		postJSON("/workspaces/" + WORKSPACE + "/coveragestores.json", JSON.stringify(storeData), function(response) {
-			createTIFFLayer(layer, filename, success);
-		}, function(response) {
-			if (response.status == 201) {
-				createTIFFLayer(layer, filename, success);
-			} else {
-				// Handle error
-				console.log(response);
-				window.alert("Cannot add TIFF coverage store to GeoServer!");
-			}
-		});
-	}
-
 	function getTIFFBands(layer, callback) {
 		getJSON("/workspaces/" + WORKSPACE + "/coveragestores/" + layer + "/coverages/" + layer + ".json", function(response) {
 			callback(response.coverage.dimensions.coverageDimension);
@@ -246,25 +171,27 @@ define([ "jquery", "message-bus", "./utils" ], function($, bus, utils) {
 	return {
 		addSHP : function(filename) {
 			var layer = utils.getLayerName(filename)
-			getJSON("/workspaces/" + WORKSPACE + "/datastores/" + layer + ".json", function() {
-				// Exists
+			function success() {
 				loadLayer(layer);
-			}, function() {
+			}
+			getJSON("/workspaces/" + WORKSPACE + "/datastores/" + layer + ".json", success, function() {
 				// Does not exist
-				createSHPDatastore(filename, layer);
+				createLayer(filename, layer, utils.SHP, success);
 			});
 		},
 		getBands : function(filename, callback) {
-			var layer = utils.getLayerName(filename)
-			getJSON("/workspaces/" + WORKSPACE + "/coveragestores/" + layer + ".json", function() {
-				// Exists
-				getTIFFBands(layer, callback)
-			}, function() {
-				// Does not exist
-				createTIFFCoveragestore(filename, layer, function() {
-					getTIFFBands(layer, callback);
-				});
-			});
+			var layer = utils.getLayerName(filename);
+
+			function success() {
+				getTIFFBands(layer, callback);
+			}
+
+			function error() {
+				createTIFFLayer(filename, layer, success);
+			}
+
+			var url = "/workspaces/" + WORKSPACE + "/coveragestores/" + layer + ".json";
+			getJSON(url, success, error);
 		},
 		addTIFF : function(filename, bands) {
 			var layer = utils.getLayerName(filename)
