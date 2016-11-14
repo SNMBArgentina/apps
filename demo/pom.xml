@@ -267,7 +267,7 @@
 							</filterConfig>
 							<!-- Skip requirejs optimization if true -->
 							<skip>
-								false
+								true
 							</skip>
 						</configuration>
 					</plugin>
