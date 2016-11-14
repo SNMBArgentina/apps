@@ -59,10 +59,13 @@ define([ "jquery", "message-bus", "./utils" ], function($, bus, utils) {
 				"id" : layer,
 				"baseUrl" : WMS_URL,
 				"wmsName" : WORKSPACE + ":" + layer,
-				"zIndex" : zIndex++
+				"zIndex" : zIndex++,
+				"queryType" : "wms",
+				"queryUrl" : WMS_URL
 			} ]
 		});
 		bus.send("layer-visibility", [ layer, true ]);
+		bus.send("reload-info-control");
 	}
 
 	function createLayer(filename, layer, type, success) {
