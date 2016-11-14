@@ -8,10 +8,10 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>demo</module>
+<!--		<module>demo</module>
 		<module>integration-tests</module>
 		<module>examples</module>
-		<module>bare</module>
+		<module>bare</module>-->
 		<module>sepal</module>
 	</modules>
 
