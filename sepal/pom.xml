@@ -37,6 +37,11 @@
 			<artifactId>base</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.fao.unredd</groupId>
+			<artifactId>layers-editor</artifactId>
+			<version>${plugins.version}</version>
+		</dependency>
 		<!-- Other deployments may access other databases, so it is responsibility 
 			of the application to include the necessary drivers -->
 		<dependency>
