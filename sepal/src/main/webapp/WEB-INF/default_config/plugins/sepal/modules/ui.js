@@ -1,4 +1,4 @@
-define([ "jquery", "message-bus", "toolbar", "./utils", "./gs-api", "jquery-ui" ], function($, bus, toolbar, utils, gs) {
+define([ "jquery", "message-bus", "toolbar", "./utils", "./gs-api", "./parseGetCapabilities", "jquery-ui" ], function($, bus, toolbar, utils, gs, capabilities) {
 	// Dialog
 	var dialog = $("<div/>").attr("id", "sepal-add-file-dialog");
 	dialog.dialog({
@@ -12,11 +12,11 @@ define([ "jquery", "message-bus", "toolbar", "./utils", "./gs-api", "jquery-ui" 
 	dialog.dialog("close");
 
 	// File chooser
-	var fileChooser = $("<div/>").attr("id", "sepal-add-file-dialog-fileChooser").appendTo(dialog);
-	var fileInput = $("<input/>").attr("id", "sepal-add-file-input");
-	var label = $("<div/>").attr("id", "sepal-add-file-label").text("Path: ");
-	fileChooser.append(label);
-	fileChooser.append(fileInput);
+	var layerChooser = $("<div/>").attr("id", "sepal-add-layer-dialog-layerChooser").appendTo(dialog);
+	var layerSelector = $("<select id='sepal-layer-selector' class='sepal-layer-selector'/>");
+	var label = $("<div/>").attr("id", "sepal-add-file-label").text("Layer: ");
+	layerChooser.append(label);
+	layerChooser.append(layerSelector);
 
 	// Band chooser
 	var bandChooser = $("<div/>").attr("id", "sepal-add-file-dialog-bandChooser").appendTo(dialog);
@@ -38,7 +38,7 @@ define([ "jquery", "message-bus", "toolbar", "./utils", "./gs-api", "jquery-ui" 
 	var blueBandChooser = $("<select id='sepal-add-tiff-select-band-blue' class='sepal-add-tiff-band-chooser'/>").appendTo(bandChooser);
 
 	// Dialog ok button
-	var okButton = $("<div/>").attr("id", "sepal-add-file-okbutton").addClass("disabled");
+	var okButton = $("<div/>").attr("id", "sepal-add-file-okbutton");
 	dialog.append(okButton);
 
 	// Toolbar button
@@ -47,35 +47,51 @@ define([ "jquery", "message-bus", "toolbar", "./utils", "./gs-api", "jquery-ui" 
 	button.text("Add file");
 	toolbar.append(button);
 
+	var vectorLayers, rasterLayers, bands;
+
 	button.click(function() {
-		fileChooser.show();
-		bandChooser.hide();
-		okButton.text("Add");
-		bands = undefined;
-		okButton.addClass("disabled");
-		fileInput.val("");
-		dialog.dialog("open");
+		capabilities.getLayers(function(v, r) {
+			vectorLayers = v;
+			rasterLayers = r;
+
+			layerSelector.empty();
+			for (var i = 0; i < vectorLayers.length; i++) {
+				var name = vectorLayers[i];
+				layerSelector.append($("<option value='" + name + "'>(Vector) " + name + "</option>"));
+			}
+			for (var i = 0; i < rasterLayers.length; i++) {
+				var name = rasterLayers[i];
+				layerSelector.append($("<option value='" + name + "'>(Raster) " + name + "</option>"));
+			}
+
+			layerChooser.show();
+			bandChooser.hide();
+			if (vectorLayers.length > 0) {
+				okButton.text("Add");
+				okButton.removeClass("disabled");
+			} else if (rasterLayers.length > 0) {
+				okButton.text("Next");
+				okButton.removeClass("disabled");
+			} else {
+				okButton.addClass("disabled");
+			}
+			bands = undefined;
+			dialog.dialog("open");
+		});
 	});
 
-	fileInput.on("change paste keyup", function() {
-		try {
-			var type = utils.getFileType(fileInput.val());
-			if (type == utils.SHP) {
-				okButton.text("Add");
-			} else if (type == utils.TIFF) {
-				okButton.text("Next");
-			}
-			okButton.removeClass("disabled");
-		} catch (e) {
-			okButton.addClass("disabled");
+	layerSelector.change(function() {
+		var layerName = layerSelector.children("option:selected").val();
+		if (vectorLayers.indexOf(layerName) > 0) {
+			okButton.text("Add");
+		} else {
+			okButton.text("Next");
 		}
 	});
 
-	var bands;
-
 	function showBandChooser(b) {
 		bands = b;
-		fileChooser.hide();
+		layerChooser.hide();
 		bandChooser.show();
 		okButton.text("Add");
 
@@ -99,35 +115,29 @@ define([ "jquery", "message-bus", "toolbar", "./utils", "./gs-api", "jquery-ui" 
 			return;
 		}
 
-		var filename = fileInput.val();
+		var layerName = layerSelector.children("option:selected").val();
 
-		if (filename.charAt(0) != "/") {
-			window.alert("Only absolute paths allowed");
-			return;
-		}
-
-		var fileType = utils.getFileType(filename);
-		if (fileType == utils.SHP) {
+		if (vectorLayers.indexOf(layerName) >= 0) {
 			dialog.dialog("close");
-			gs.addSHP(filename);
-		} else if (fileType == utils.TIFF) {
+			gs.addSHP(layerName);
+		} else if (rasterLayers.indexOf(layerName) >= 0) {
 			if (!bands) {
-				gs.getBands(filename, showBandChooser);
+				gs.getBands(layerName, showBandChooser);
 			} else {
 				dialog.dialog("close");
 
 				if (radioDefaultStyle.is(":checked")) {
-					gs.addTIFF(filename);
+					gs.addTIFF(layerName);
 				} else if (radioGrayscale.is(":checked")) {
 					// Band indexes are 1-based
 					var gray = 1 + parseInt(grayscaleBandChooser.children("option:selected").val());
-					gs.addTIFF(filename, [ gray ]);
+					gs.addTIFF(layerName, [ gray ]);
 				} else if (radioRGB.is(":checked")) {
 					// Band indexes are 1-based
 					var r = 1 + parseInt(redBandChooser.children("option:selected").val());
 					var g = 1 + parseInt(greenBandChooser.children("option:selected").val());
 					var b = 1 + parseInt(blueBandChooser.children("option:selected").val());
-					gs.addTIFF(filename, [ r, g, b ]);
+					gs.addTIFF(layerName, [ r, g, b ]);
 				}
 
 				grayscaleBandChooser.empty();
@@ -135,6 +145,8 @@ define([ "jquery", "message-bus", "toolbar", "./utils", "./gs-api", "jquery-ui" 
 				greenBandChooser.empty();
 				blueBandChooser.empty();
 				bands = undefined;
+				vectorLayers = [];
+				rasterLayers = [];
 			}
 		}
 	});
