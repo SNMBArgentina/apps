@@ -13,5 +13,11 @@
 		"info-dialog": {
 			"open-in-center": false
 		}
+	},
+	"layer-order" : {
+		"_enabled" : false
+	},
+	"layers-editor" : {
+		"_enabled" : false
 	}
 }
