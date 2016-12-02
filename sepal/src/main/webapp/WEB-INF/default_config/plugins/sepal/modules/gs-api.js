@@ -123,7 +123,7 @@ define([ "jquery", "message-bus", "./utils" ], function($, bus, utils) {
 				"queryUrl" : WMS_URL
 			} ]
 		});
-		bus.send("layer-visibility", [ layer, true ]);
+		bus.send("layer-visibility", [ layerId, true ]);
 		bus.send("reload-info-control");
 	}
 
