@@ -115,7 +115,7 @@
 			]
 		},
 		{
-			"id": "osm-layer",
+			"id": "osm",
 			"active": true,
 			"label": "Open Street Map",
 			"layers": [
@@ -203,7 +203,7 @@
 				"selvamis_t"
 			],
 			"feedback": true,
-			"timeInstances": "1998,2002",
+			"timeInstances": "1998-01-01T00:00:00.000Z,2002-01-01T00:00:00.000Z",
 			"infoFile": "argentina.html"
 		}
 	],
@@ -213,7 +213,7 @@
 			"label": "${base_layers}",
 			"items": [
 				"google-maps-context",
-				"osm-layer",
+				"osm",
 				"blue-marble"
 			]
 		},
