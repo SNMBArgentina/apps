@@ -16,8 +16,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<core.version>5.0.0-beta5</core.version>
-		<plugins.version>5.0.0-beta5</plugins.version>
+		<core.version>5.0.0</core.version>
+		<plugins.version>5.0.0-beta6</plugins.version>
 	</properties>
 
 	<repositories>
