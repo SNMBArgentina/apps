@@ -24,74 +24,74 @@
 			"visible": true
 		},
 		{
+			"id": "map-stb_t",
+			"label": "Selva Tucumano Boliviana - Yungas",
 			"baseUrl": "/gwc/service/wms",
-			"legend": "auto",
-			"visible": true,
 			"imageFormat": "image/png8",
 			"wmsName": "bosques_umsef_db:stbbn06",
-			"label": "Selva Tucumano Boliviana - Yungas",
-			"id": "map-stb_t"
+			"legend": "auto",
+			"visible": true
 		},
 		{
-			"baseUrl": "/gwc/service/wms",
-			"legend": "auto",
-			"visible": true,
-			"imageFormat": "image/png8",
-			"wmsName": "bosques_umsef_db:pch9806_3857",
+			"id": "map-pchbn06_3857",
 			"label": "Parque Chaqueño",
-			"id": "map-pchbn06_3857"
+			"baseUrl": "/gwc/service/wms",
+			"wmsName": "bosques_umsef_db:pch9806_3857",
+			"imageFormat": "image/png8",
+			"legend": "auto",
+			"visible": true
 		},
 		{
-			"baseUrl": "/gwc/service/wms",
+			"id": "map-espnan06",
 			"label": "Espinal - Distrito del Ñandubay (2006)",
-			"visible": true,
-			"imageFormat": "image/png8",
-			"legend": "auto",
+			"baseUrl": "/gwc/service/wms",
 			"wmsName": "bosques_umsef_db:espnan06_3857",
-			"id": "map-espnan06"
+			"imageFormat": "image/png8",
+			"visible": true,
+			"legend": "auto"
 		},
 		{
-			"baseUrl": "/gwc/service/wms",
-			"label": "Espinal - Distrito del Caldén (2006)",
-			"visible": true,
 			"id": "map-espcal06",
+			"label": "Espinal - Distrito del Caldén (2006)",
+			"baseUrl": "/gwc/service/wms",
 			"wmsName": "bosques_umsef_db:espcal06_3857",
+			"visible": true,
 			"legend": "auto"
 		},
 		{
-			"baseUrl": "/gwc/service/wms",
 			"id": "map-mon98",
-			"visible": true,
-			"imageFormat": "image/png8",
-			"wmsName": "bosques_umsef_db:mon98pinbn3857",
 			"label": "Monte (1998)",
+			"baseUrl": "/gwc/service/wms",
+			"wmsName": "bosques_umsef_db:mon98pinbn3857",
+			"imageFormat": "image/png8",
+			"visible": true,
 			"legend": "auto"
 		},
 		{
-			"baseUrl": "/gwc/service/wms",
-			"label": "Selva Misionera - Selva Paranaense",
-			"visible": true,
-			"imageFormat": "image/png8",
 			"id": "selvamis_t",
+			"label": "Selva Misionera - Selva Paranaense",
+			"baseUrl": "/gwc/service/wms",
 			"wmsName": "bosques_umsef_db:smi_98-02_umsef_3857",
+			"imageFormat": "image/png8",
+			"visible": true,
 			"legend": "auto"
 		},
 		{
-			"baseUrl": "/gwc/service/wms",
+			"id": "map-bap",
 			"label": "Bosque Andino Patagónico",
-			"visible": true,
-			"legend": "auto",
-			"imageFormat": "image/png8",
+			"baseUrl": "/gwc/service/wms",
 			"wmsName": "bosques_umsef_db:bap_pinb_umsef_3857",
-			"id": "map-bap"
+			"imageFormat": "image/png8",
+			"visible": true,
+			"legend": "auto"
 		},
 		{
 			"id": "limites_provinciales",
+			"label": "L\u00edmites provinciales",
 			"baseUrl": "/gwc/service/wms",
 			"wmsName": "bosques_umsef_db:limites_provinciales",
-			"label": "L\u00edmites provinciales",
-			"visible": true,
 			"imageFormat": "image/png8",
+			"visible": true,
 			"queryType": "wfs",
 			"queryUrl": "http://snmb.ambiente.gob.ar/geo-server/wfs",
 			"queryGeomFieldName": "geom",
@@ -135,76 +135,82 @@
 			"label": "Argentina"
 		},
 		{
+			"id": "limites_provinciales",
+			"label": "L\u00edmites provinciales",
 			"active": true,
 			"layers": [
 				"limites_provinciales"
 			],
-			"id": "limites_provinciales",
-			"infoFile": "ign.html",
-			"label": "L\u00edmites provinciales"
+			"infoFile": "argentina.html"
 		},
 		{
+			"id": "bap",
+			"label": "Bosque Andino Patagónico (2000)",
 			"layers": [
 				"map-bap"
 			],
 			"feedback": true,
-			"id": "bap",
-			"label": "Bosque Andino Patagónico (2000)"
+			"infoFile": "argentina.html"
 		},
 		{
+			"id": "stb_t",
+			"label": "Selva Tucumano Boliviana - Yungas",
 			"layers": [
 				"map-stb_t"
 			],
 			"feedback": true,
 			"timeInstances": "1998-01-01T00:00:00.000Z,2002-01-01T00:00:00.000Z,2006-01-01T00:00:00.000Z",
-			"label": "Selva Tucumano Boliviana - Yungas",
-			"id": "stb_t"
+			"infoFile": "argentina.html"
 		},
 		{
+			"id": "pchbn06_3857",
+			"label": "Parque Chaqueño",
 			"layers": [
 				"map-pchbn06_3857"
 			],
 			"feedback": true,
 			"timeInstances": "1998-01-01T00:00:00.000Z,2002-01-01T00:00:00.000Z,2006-01-01T00:00:00.000Z",
-			"label": "Parque Chaqueño",
-			"id": "pchbn06_3857"
+			"infoFile": "argentina.html"
 		},
 		{
+			"id": "espnan06",
+			"label": "Espinal - Distrito del Ñandubay (2006)",
 			"layers": [
 				"map-espnan06"
 			],
-			"id": "espnan06",
-			"label": "Espinal - Distrito del Ñandubay (2006)"
+			"infoFile": "argentina.html"
 		},
 		{
+			"id": "espcal06",
+			"label": "Espinal - Distrito del Caldén (2006)",
 			"layers": [
 				"map-espcal06"
 			],
-			"id": "espcal06",
-			"label": "Espinal - Distrito del Caldén (2006)"
+			"infoFile": "argentina.html"
 		},
 		{
+			"id": "mon98",
+			"label": "Monte (1998)",
 			"layers": [
 				"map-mon98"
 			],
-			"id": "mon98",
-			"label": "Monte (1998)"
+			"infoFile": "argentina.html"
 		},
 		{
+			"id": "selvamis_t",
+			"label": "Selva Misionera - Selva Paranaense",
 			"layers": [
 				"selvamis_t"
 			],
 			"feedback": true,
 			"timeInstances": "1998,2002",
-			"label": "Selva Misionera - Selva Paranaense",
-			"id": "selvamis_t"
+			"infoFile": "argentina.html"
 		}
 	],
 	"groups": [
 		{
 			"id": "base",
 			"label": "${base_layers}",
-			"infoFile": "base_layers.html",
 			"items": [
 				"google-maps-context",
 				"osm-layer",
@@ -214,7 +220,6 @@
 		{
 			"id": "admin",
 			"label": "${admin_areas}",
-			"infoLink": "http://nfms4redd.org/",
 			"items": [
 				"argentina_title_placeholder",
 				"limites_provinciales"
