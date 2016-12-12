@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.fao.unredd.apps</groupId>
 		<artifactId>apps-root</artifactId>
-		<version>5.1-SNAPSHOT</version>
+		<version>6.0-SNAPSHOT</version>
 	</parent>
 
 	<packaging>war</packaging>
@@ -64,14 +64,8 @@
 								<id>generate-buildconfig</id>
 								<phase>prepare-package</phase>
 								<goals>
-									<goal>generate-buildconfig</goal>
+									<goal>generate-minified</goal>
 								</goals>
-								<configuration>
-									<mainTemplate>${project.build.directory}/requirejs/main.js</mainTemplate>
-									<webClientFolder>${project.build.directory}/requirejs</webClientFolder>
-									<buildconfigOutputPath>${project.build.directory}/buildconfig.js</buildconfigOutputPath>
-									<mainOutputPath>${project.build.directory}/requirejs/geoladris/modules/main.js</mainOutputPath>
-								</configuration>
 							</execution>
 						</executions>
 					</plugin>
@@ -92,9 +86,9 @@
 							<extraConfigFile>${basedir}/src/main/config/wro.properties</extraConfigFile>
 							<targetGroups>portal-style</targetGroups>
 							<minimize>true</minimize>
-							<contextFolder>${basedir}/target/requirejs/geoladris/</contextFolder>
+							<contextFolder>${project.build.directory}/requirejs/geoladris/</contextFolder>
 							<destinationFolder>${basedir}/src/main/webapp/optimized/</destinationFolder>
-							<wroFile>${basedir}/src/main/config/wro.xml</wroFile>
+							<wroFile>${project.build.directory}/wro.xml</wroFile>
 						</configuration>
 					</plugin>
 					<plugin>
@@ -116,14 +110,14 @@
 							<!--</nodeExecutable> -->
 							<!-- path to optimizer json config file -->
 							<configFile>${project.build.directory}/buildconfig.js</configFile>
-							<fillDepsFromFolder>${project.build.directory}/requirejs/geoladris/modules</fillDepsFromFolder>
+							<fillDepsFromFolder>${project.build.directory}/requirejs/geoladris</fillDepsFromFolder>
 							<!-- optional path to optimizer executable -->
 							<!--<optimizerFile> -->
 							<!--${basedir}/src/main/scripts/r.js -->
 							<!--</optimizerFile> -->
 							<!-- optional parameters to optimizer executable -->
 							<optimizerParameters>
-								<parameter>optimize=uglify</parameter>
+								<parameter>optimize=uglify2</parameter>
 								<!--<parameter>baseUrl=${baseDir}</parameter> -->
 							</optimizerParameters>
 							<!-- Whether or not to process configFile with maven filters. If you 
@@ -133,9 +127,9 @@
 								true
 							</filterConfig>
 							<!-- Skip requirejs optimization if true -->
-							<skip>
+							<!-- <skip>
 								false
-							</skip>
+							</skip>-->
 						</configuration>
 					</plugin>
 				</plugins>
