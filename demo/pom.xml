@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.fao.unredd.apps</groupId>
@@ -19,6 +17,15 @@
 			<url>http://maven.geo-solutions.it/</url>
 		</repository>
 	</repositories>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- See https://nodejs.org/en/download/ for latest node and npm (lts) versions -->
+		<node.version>v6.9.2</node.version>
+		<npm.version>3.10.9</npm.version>
+		<core.version>6.0-SNAPSHOT</core.version>
+		<plugins.version>6.0-SNAPSHOT</plugins.version>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -78,7 +85,7 @@
 			<artifactId>layer-order</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
-		<!-- Other deployments may access other databases, so it is responsibility 
+		<!-- Other deployments may access other databases, so it is responsibility
 			of the application to include the necessary drivers -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -97,6 +104,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+		<dependency>
+			<groupId>de.csgis.geoladris</groupId>
+			<artifactId>ui</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>
@@ -106,113 +119,62 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.3</version>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<includeGroupIds>org.fao.unredd,de.csgis.geoladris</includeGroupIds>
+					<outputDirectory>${project.build.directory}/geoladris</outputDirectory>
+					<useSubDirectoryPerArtifact>true</useSubDirectoryPerArtifact>
+					<stripVersion>true</stripVersion>
+				</configuration>
+				<executions>
+					<execution>
+						<id>unpack-dependencies</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>unpack-dependencies</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>1.0</version>
+				<executions>
+					<execution>
+						<id>install node and npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						<configuration>
+							<nodeVersion>${node.version}</nodeVersion>
+							<npmVersion>${npm.version}</npmVersion>
+						</configuration>
+					</execution>
+					<execution>
+						<id>npm install</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>npm build</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<phase>prepare-package</phase>
+						<configuration>
+							<arguments>run build --if-present</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
-	<profiles>
-		<profile>
-			<id>optimize</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-dependency-plugin</artifactId>
-						<version>2.8</version>
-						<configuration>
-							<outputDirectory>${project.build.directory}/requirejs</outputDirectory>
-						</configuration>
-						<executions>
-							<execution>
-								<id>unpack-dependencies</id>
-								<phase>prepare-package</phase>
-								<goals>
-									<goal>unpack-dependencies</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.fao.unredd</groupId>
-						<artifactId>jwebclient-analyzer-maven-plugin</artifactId>
-						<version>${core.version}</version>
-						<executions>
-							<execution>
-								<id>generate-buildconfig</id>
-								<phase>prepare-package</phase>
-								<goals>
-									<goal>generate-minified</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>ro.isdc.wro4j</groupId>
-						<artifactId>wro4j-maven-plugin</artifactId>
-						<version>1.7.6</version>
-
-						<configuration>
-							<wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory</wroManagerFactory>
-							<extraConfigFile>${basedir}/src/main/config/wro.properties</extraConfigFile>
-							<targetGroups>portal-style</targetGroups>
-							<minimize>true</minimize>
-							<contextFolder>${project.build.directory}/requirejs/geoladris/</contextFolder>
-							<destinationFolder>${basedir}/src/main/webapp/optimized/</destinationFolder>
-							<wroFile>${project.build.directory}/wro.xml</wroFile>
-						</configuration>
-						<executions>
-							<execution>
-								<phase>prepare-package</phase>
-								<goals>
-									<goal>run</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>com.github.bringking</groupId>
-						<artifactId>requirejs-maven-plugin</artifactId>
-						<version>2.0.4</version>
-						<executions>
-							<execution>
-								<phase>prepare-package</phase>
-								<goals>
-									<goal>optimize</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<!-- optional path to a nodejs executable -->
-							<!--<nodeExecutable> -->
-							<!--/opt/nodejs/node -->
-							<!--</nodeExecutable> -->
-							<!-- path to optimizer json config file -->
-							<configFile>${project.build.directory}/buildconfig.js</configFile>
-							<fillDepsFromFolder>${project.build.directory}/requirejs/geoladris</fillDepsFromFolder>
-							<!-- optional path to optimizer executable -->
-							<!--<optimizerFile> -->
-							<!--${basedir}/src/main/scripts/r.js -->
-							<!--</optimizerFile> -->
-							<!-- optional parameters to optimizer executable -->
-							<optimizerParameters>
-								<parameter>optimize=uglify2</parameter>
-								<!--<parameter>baseUrl=${baseDir}</parameter> -->
-							</optimizerParameters>
-							<!-- Whether or not to process configFile with maven filters. If you 
-								use this option, some options in your configFile must resolve to absolute 
-								paths (see below) -->
-							<filterConfig>
-								true
-							</filterConfig>
-							<!-- Skip requirejs optimization if true -->
-							<!-- <skip>
-								false
-							</skip> -->
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>
