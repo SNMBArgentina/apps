@@ -15,9 +15,9 @@
 		}
 	},
 	"layer-order" : {
-		"_enabled" : true
+		"_enabled" : false
 	},
 	"layers-editor" : {
-		"_enabled" : true
+		"_enabled" : false
 	}
 }
