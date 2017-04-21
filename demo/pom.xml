@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.fao.unredd.apps</groupId>
 		<artifactId>apps-root</artifactId>
-		<version>6.0-SNAPSHOT</version>
+		<version>6.0.0</version>
 	</parent>
 	<packaging>war</packaging>
 	<artifactId>demo</artifactId>
@@ -78,7 +78,7 @@
 			<artifactId>layer-order</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
-		<!-- Other deployments may access other databases, so it is responsibility 
+		<!-- Other deployments may access other databases, so it is responsibility
 			of the application to include the necessary drivers -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -205,8 +205,8 @@
 								<parameter>optimize=uglify2</parameter>
 								<!--<parameter>baseUrl=${baseDir}</parameter> -->
 							</optimizerParameters>
-							<!-- Whether or not to process configFile with maven filters. If you 
-								use this option, some options in your configFile must resolve to absolute 
+							<!-- Whether or not to process configFile with maven filters. If you
+								use this option, some options in your configFile must resolve to absolute
 								paths (see below) -->
 							<filterConfig>
 								true
