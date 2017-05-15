@@ -20,9 +20,11 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- See https://nodejs.org/en/download/ for latest node and npm (lts) versions -->
-		<node.version>v6.9.2</node.version>
-		<npm.version>3.10.9</npm.version>
+		<!-- See https://nodejs.org/en/download/ for latest node version -->
+		<node.version>v6.10.1</node.version>
+		<!-- See https://yarnpkg.com/ for latest yarn version -->
+		<yarn.version>v0.23.2</yarn.version>
+
 		<core.version>6.0-SNAPSHOT</core.version>
 		<plugins.version>6.0-SNAPSHOT</plugins.version>
 	</properties>
@@ -115,62 +117,37 @@
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.3</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>2.8</version>
-				<configuration>
-					<includeGroupIds>org.fao.unredd,de.csgis.geoladris</includeGroupIds>
-					<outputDirectory>${project.build.directory}/geoladris</outputDirectory>
-					<useSubDirectoryPerArtifact>true</useSubDirectoryPerArtifact>
-					<stripVersion>true</stripVersion>
-				</configuration>
-				<executions>
-					<execution>
-						<id>unpack-dependencies</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>unpack-dependencies</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
-				<version>1.0</version>
+				<version>1.4</version>
 				<executions>
 					<execution>
-						<id>install node and npm</id>
+						<id>install-node-and-yarn</id>
 						<goals>
-							<goal>install-node-and-npm</goal>
+							<goal>install-node-and-yarn</goal>
 						</goals>
 						<configuration>
 							<nodeVersion>${node.version}</nodeVersion>
-							<npmVersion>${npm.version}</npmVersion>
+							<yarnVersion>${yarn.version}</yarnVersion>
 						</configuration>
 					</execution>
 					<execution>
-						<id>npm install</id>
+						<id>yarn install</id>
 						<goals>
-							<goal>npm</goal>
+							<goal>yarn</goal>
 						</goals>
 						<configuration>
 							<arguments>install</arguments>
 						</configuration>
 					</execution>
 					<execution>
-						<id>npm build</id>
+						<id>yarn-build</id>
 						<goals>
-							<goal>npm</goal>
+							<goal>yarn</goal>
 						</goals>
 						<phase>prepare-package</phase>
 						<configuration>
-							<arguments>run build --if-present</arguments>
+							<arguments>run build</arguments>
 						</configuration>
 					</execution>
 				</executions>

@@ -1,9 +1,10 @@
 node
 node_modules
 src/main/webapp/index.html
-src/main/webapp/modules
+src/main/webapp/src
 src/main/webapp/styles
 src/main/webapp/jslib
 src/main/webapp/theme
 src/main/webapp/app.min.js
+src/main/webapp/app.min.css
 build.js
