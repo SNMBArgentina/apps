@@ -15,11 +15,11 @@
     "@geoladris/ol2Controls": "file:../../plugins/ol2Controls",
     "@geoladris/time-slider": "file:../../plugins/time-slider",
     "@geoladris/tour": "file:../../plugins/tour",
-    "clean-css": "^4.1.2",
     "ui": "file:../../../geobricks/geoladris-plugins/ui"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.1",
+    "clean-css": "^4.1.2",
     "eslint": "^3.18.0",
     "eslint-config-airbnb-es5": "^1.1.0",
     "eslint-plugin-react": "^6.10.3",

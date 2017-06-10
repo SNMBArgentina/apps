@@ -2,14 +2,6 @@
 # yarn lockfile v1
 
 
-"@geoladris/base@file:../../plugins/base":
-  version "6.0.0-SNAPSHOT"
-  dependencies:
-    "@geoladris/core" geoladris/core#js_deps
-    highcharts "^4.1.5"
-    moment "^2.9.0"
-    requirejs-text "^2.0.15"
-
 "@geoladris/core@file:../../core":
   version "6.0.0-SNAPSHOT-2017-05-15T14.53.12"
   dependencies:
@@ -18,72 +10,6 @@
     jquery "^2.1.0"
     klaw-sync "^1.1.2"
     requirejs "^2.1.8"
-
-"@geoladris/core@geoladris/core#js_deps":
-  version "6.0.0-SNAPSHOT-2017-05-15T14.53.12"
-  resolved "https://codeload.github.com/geoladris/core/tar.gz/9232303cfffb2cf8aa0f90e043ef3aaf594b61fc"
-  dependencies:
-    clean-css "^4.1.2"
-    fs-extra "^2.1.2"
-    jquery "^2.1.0"
-    klaw-sync "^1.1.2"
-    requirejs "^2.1.8"
-
-"@geoladris/feedback@file:../../plugins/feedback":
-  version "6.0.0-SNAPSHOT"
-  dependencies:
-    "@geoladris/core" geoladris/core#js_deps
-
-"@geoladris/footnote@file:../../plugins/footnote":
-  version "6.0.0-SNAPSHOT"
-  dependencies:
-    "@geoladris/core" geoladris/core#js_deps
-
-"@geoladris/geojson@file:../../plugins/geojson":
-  version "6.0.0-SNAPSHOT"
-  dependencies:
-    "@geoladris/core" geoladris/core#js_deps
-    wellknown "^0.5.0"
-
-"@geoladris/language-buttons@file:../../plugins/language-buttons":
-  version "6.0.0-SNAPSHOT"
-  dependencies:
-    "@geoladris/core" geoladris/core#js_deps
-
-"@geoladris/layer-order@file:../../plugins/layer-order":
-  version "6.0.0-SNAPSHOT"
-  dependencies:
-    "@geoladris/core" geoladris/core#js_deps
-
-"@geoladris/layer-time-sliders@file:../../plugins/layer-time-sliders":
-  version "6.0.0-SNAPSHOT"
-  dependencies:
-    "@geoladris/core" geoladris/core#js_deps
-
-"@geoladris/layers-editor@file:../../plugins/layers-editor":
-  version "6.0.0-SNAPSHOT"
-  dependencies:
-    "@geoladris/core" geoladris/core#js_deps
-
-"@geoladris/ol2@file:../../plugins/ol2":
-  version "6.0.0-SNAPSHOT"
-  dependencies:
-    "@geoladris/core" geoladris/core#js_deps
-
-"@geoladris/ol2Controls@file:../../plugins/ol2Controls":
-  version "6.0.0-SNAPSHOT"
-  dependencies:
-    "@geoladris/core" geoladris/core#js_deps
-
-"@geoladris/time-slider@file:../../plugins/time-slider":
-  version "6.0.0-SNAPSHOT"
-  dependencies:
-    "@geoladris/core" geoladris/core#js_deps
-
-"@geoladris/tour@file:../../plugins/tour":
-  version "6.0.0-SNAPSHOT"
-  dependencies:
-    "@geoladris/core" geoladris/core#js_deps
 
 acorn-jsx@^3.0.0:
   version "3.0.1"
@@ -291,13 +217,13 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
-concat-stream@^1.5.2, concat-stream@~1.5.0:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/concat-stream/-/concat-stream-1.5.2.tgz#708978624d856af41a5a741defdd261da752c266"
+concat-stream@^1.5.2:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/concat-stream/-/concat-stream-1.6.0.tgz#0aac662fd52be78964d5532f694784e70110acf7"
   dependencies:
-    inherits "~2.0.1"
-    readable-stream "~2.0.0"
-    typedarray "~0.0.5"
+    inherits "^2.0.3"
+    readable-stream "^2.2.2"
+    typedarray "^0.0.6"
 
 core-js@^2.4.0:
   version "2.4.1"
@@ -694,10 +620,6 @@ has@^1.0.1:
   dependencies:
     function-bind "^1.0.2"
 
-highcharts@^4.1.5:
-  version v4.2.7
-  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-4.2.7.tgz#45cbed8e99c9c042e95f9c51076726496f686862"
-
 ignore@^3.2.0:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.3.tgz#432352e57accd87ab3110e82d3fea0e47812156d"
@@ -713,7 +635,7 @@ inflight@^1.0.4:
     once "^1.3.0"
     wrappy "1"
 
-inherits@2, inherits@~2.0.1:
+inherits@2, inherits@^2.0.3, inherits@~2.0.1:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
 
@@ -800,9 +722,15 @@ is-my-json-valid@^2.10.0:
     jsonpointer "^4.0.0"
     xtend "^4.0.0"
 
-is-number@^2.0.2, is-number@^2.1.0:
+is-number@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-2.1.0.tgz#01fcbbb393463a548f2f466cce16dece49db908f"
+  dependencies:
+    kind-of "^3.0.2"
+
+is-number@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/is-number/-/is-number-3.0.0.tgz#24fd6201a4782cf50561c810276afc7d12d71195"
   dependencies:
     kind-of "^3.0.2"
 
@@ -905,6 +833,12 @@ kind-of@^3.0.2:
   dependencies:
     is-buffer "^1.1.5"
 
+kind-of@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-4.0.0.tgz#20813df3d712928b207378691a45066fae72dd57"
+  dependencies:
+    is-buffer "^1.1.5"
+
 klaw-sync@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/klaw-sync/-/klaw-sync-1.1.2.tgz#b5bc67a244e261b0ea71d97e586ea0521e734a9a"
@@ -958,23 +892,11 @@ minimist@0.0.8:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.8.tgz#857fcabfc3397d2625b8228262e86aa7a011b05d"
 
-minimist@~1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
-
 mkdirp@^0.5.0, mkdirp@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
-
-moment@2.5.1:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.5.1.tgz#7146a3900533064ca799d5e792f4e480ee0e82bc"
-
-moment@2.x, moment@^2.9.0:
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
 ms@2.0.0:
   version "2.0.0"
@@ -993,10 +915,6 @@ normalize-path@^2.0.1:
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-2.1.1.tgz#1ab28b556e198363a8c1a6f7e6fa20137fe6aed9"
   dependencies:
     remove-trailing-separator "^1.0.1"
-
-nouislider@9.2.0:
-  version "9.2.0"
-  resolved "https://registry.yarnpkg.com/nouislider/-/nouislider-9.2.0.tgz#e87c507de2b0b4d075038b5a42547c7dbbebaf69"
 
 number-is-nan@^1.0.0:
   version "1.0.1"
@@ -1075,12 +993,6 @@ pify@^2.0.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
 
-pikaday@1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/pikaday/-/pikaday-1.5.1.tgz#0a48549bc1a14ea1d08c44074d761bc2f2bfcfd3"
-  optionalDependencies:
-    moment "2.x"
-
 pinkie-promise@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/pinkie-promise/-/pinkie-promise-2.0.1.tgz#2135d6dfa7a358c069ac9b178776288228450ffa"
@@ -1094,10 +1006,6 @@ pinkie@^2.0.0:
 pluralize@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-1.2.1.tgz#d1a21483fd22bb41e58a12fa3421823140897c45"
-
-popper.js@^1.0.2, popper.js@^1.9.9:
-  version "1.9.9"
-  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.9.9.tgz#bcc8d2e4e40fa0ce26ce33ee0f9f8e7ad8c75809"
 
 prelude-ls@~1.1.2:
   version "1.1.2"
@@ -1116,21 +1024,22 @@ progress@^1.1.8:
   resolved "https://registry.yarnpkg.com/progress/-/progress-1.1.8.tgz#e260c78f6161cdd9b0e56cc3e0a85de17c7a57be"
 
 randomatic@^1.1.3:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/randomatic/-/randomatic-1.1.6.tgz#110dcabff397e9dcff7c0789ccc0a49adf1ec5bb"
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/randomatic/-/randomatic-1.1.7.tgz#c7abe9cc8b87c0baa876b19fde83fd464797e38c"
   dependencies:
-    is-number "^2.0.2"
-    kind-of "^3.0.2"
+    is-number "^3.0.0"
+    kind-of "^4.0.0"
 
-readable-stream@~2.0.0:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.0.6.tgz#8f90341e68a53ccc928788dacfcd11b36eb9b78e"
+readable-stream@^2.2.2:
+  version "2.2.11"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.2.11.tgz#0796b31f8d7688007ff0b93a8088d34aa17c0f72"
   dependencies:
     core-util-is "~1.0.0"
     inherits "~2.0.1"
     isarray "~1.0.0"
     process-nextick-args "~1.0.6"
-    string_decoder "~0.10.x"
+    safe-buffer "~5.0.1"
+    string_decoder "~1.0.0"
     util-deprecate "~1.0.1"
 
 readline2@^1.0.1:
@@ -1177,10 +1086,6 @@ require-uncached@^1.0.2:
     caller-path "^0.1.0"
     resolve-from "^1.0.0"
 
-requirejs-text@^2.0.15:
-  version "2.0.15"
-  resolved "https://registry.yarnpkg.com/requirejs-text/-/requirejs-text-2.0.15.tgz#13138733613fc4457b7e1247e8cb751df7aa5429"
-
 requirejs@^2.1.8:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/requirejs/-/requirejs-2.3.3.tgz#aa59fd3a0287eaf407959a138228044b5dd6a6a3"
@@ -1218,6 +1123,10 @@ rx-lite@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-3.1.2.tgz#19ce502ca572665f3b647b10939f97fd1615f102"
 
+safe-buffer@~5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.0.1.tgz#d263ca54696cd8a306b5ca6551e92de57918fbe7"
+
 shelljs@^0.7.5:
   version "0.7.8"
   resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.7.8.tgz#decbcf874b0d1e5fb72e14b164a9683048e9acb3"
@@ -1229,10 +1138,6 @@ shelljs@^0.7.5:
 slice-ansi@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/slice-ansi/-/slice-ansi-0.0.4.tgz#edbf8903f66f7ce2f8eafd6ceed65e264c831b35"
-
-sortablejs@1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/sortablejs/-/sortablejs-1.4.2.tgz#10df66054e1d1dcb538d7eaedaeaf692232c8d0d"
 
 source-map@0.5.x:
   version "0.5.6"
@@ -1261,9 +1166,11 @@ string-width@^2.0.0:
     is-fullwidth-code-point "^2.0.0"
     strip-ansi "^3.0.0"
 
-string_decoder@~0.10.x:
-  version "0.10.31"
-  resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
+string_decoder@~1.0.0:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.0.2.tgz#b29e1f4e1125fa97a10382b8a533737b7491e179"
+  dependencies:
+    safe-buffer "~5.0.1"
 
 strip-ansi@^3.0.0:
   version "3.0.1"
@@ -1310,12 +1217,6 @@ to-fast-properties@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-1.0.3.tgz#b83571fa4d8c25b82e231b06e3a3055de4ca1a47"
 
-tooltip.js@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/tooltip.js/-/tooltip.js-1.1.4.tgz#17337f22065fc04d4a456429ce122dbf184bd861"
-  dependencies:
-    popper.js "^1.0.2"
-
 tryit@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tryit/-/tryit-1.0.3.tgz#393be730a9446fd1ead6da59a014308f36c289cb"
@@ -1326,25 +1227,9 @@ type-check@~0.3.2:
   dependencies:
     prelude-ls "~1.1.2"
 
-typeahead.js@0.10.2:
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/typeahead.js/-/typeahead.js-0.10.2.tgz#01ae3cd2faf8f2018c0434d18130ca5d38d951de"
-
-typedarray@~0.0.5:
+typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
-
-"ui@file:../../../geobricks/geoladris-plugins/ui":
-  version "1.0.0"
-  dependencies:
-    "@geoladris/core" "file:../../../geoladris/core"
-    moment "2.5.1"
-    nouislider "9.2.0"
-    pikaday "1.5.1"
-    popper.js "^1.9.9"
-    sortablejs "1.4.2"
-    tooltip.js "^1.1.4"
-    typeahead.js "0.10.2"
 
 user-home@^2.0.0:
   version "2.0.0"
@@ -1355,13 +1240,6 @@ user-home@^2.0.0:
 util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
-
-wellknown@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/wellknown/-/wellknown-0.5.0.tgz#09ae9871fa826cf0a6ec1537ef00c379d78d7101"
-  dependencies:
-    concat-stream "~1.5.0"
-    minimist "~1.2.0"
 
 wordwrap@~1.0.0:
   version "1.0.0"
