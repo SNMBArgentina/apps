@@ -1,0 +1,32 @@
+{
+  "name": "demo",
+  "version": "6.0.0-SNAPSHOT",
+  "dependencies": {
+    "@geoladris/base": "file:../../plugins/base",
+    "@geoladris/core": "file:../../core",
+    "@geoladris/feedback": "file:../../plugins/feedback",
+    "@geoladris/footnote": "file:../../plugins/footnote",
+    "@geoladris/geojson": "file:../../plugins/geojson",
+    "@geoladris/language-buttons": "file:../../plugins/language-buttons",
+    "@geoladris/layer-order": "file:../../plugins/layer-order",
+    "@geoladris/layer-time-sliders": "file:../../plugins/layer-time-sliders",
+    "@geoladris/layers-editor": "file:../../plugins/layers-editor",
+    "@geoladris/ol2": "file:../../plugins/ol2",
+    "@geoladris/ol2Controls": "file:../../plugins/ol2Controls",
+    "@geoladris/time-slider": "file:../../plugins/time-slider",
+    "@geoladris/tour": "file:../../plugins/tour",
+    "ui": "file:../../../geobricks/geoladris-plugins/ui"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.1",
+    "clean-css": "^4.1.2",
+    "eslint": "^3.18.0",
+    "eslint-config-airbnb-es5": "^1.1.0",
+    "eslint-plugin-react": "^6.10.3",
+    "requirejs": "^2.1.8",
+    "squirejs": "^0.2.1"
+  },
+  "scripts": {
+    "build": "gl-build-app.js && r.js -o build.js"
+  }
+}

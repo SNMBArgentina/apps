@@ -3,3 +3,12 @@ target/
 .classpath
 .settings
 velocity.log
+*/src/main/webapp/*.js
+*/src/main/webapp/app.min.css
+*/src/main/webapp/index.html
+*/src/main/webapp/geoladris
+yarn-error.log
+node
+node_modules
+build.js
+
