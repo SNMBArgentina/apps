@@ -1,0 +1,17 @@
+{
+  "extends": "eslint-config-airbnb-es5",
+  "rules" : {
+    "indent" : ["error", "tab"],
+    "space-before-function-paren": ["error", {
+        "anonymous": "never",
+        "named": "never",
+        "asyncArrow": "ignore"
+    }],
+    "func-names": 0
+  },
+  "env" : {
+    "browser" : true,
+    "amd" : true,
+    "jasmine" : true
+  }
+}
