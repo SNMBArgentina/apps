@@ -2,10 +2,23 @@
 # yarn lockfile v1
 
 
-"@geoladris/base@file:../../plugins/base":
-  version "6.0.0-SNAPSHOT"
+"@csgeoladris/ui@csgis/geoladris-ui#master":
+  version "1.0.0"
+  resolved "https://codeload.github.com/csgis/geoladris-ui/tar.gz/de3c8d9bff79b4242ef99fd146457cb5a172af9d"
   dependencies:
-    "@geoladris/core" geoladris/core#js_deps
+    "@geoladris/core" geoladris/core#master
+    moment "2.5.1"
+    nouislider "9.2.0"
+    pikaday "1.5.1"
+    popper.js "^1.9.9"
+    sortablejs "1.4.2"
+    tooltip.js "^1.1.4"
+    typeahead.js "0.10.2"
+
+"@geoladris/base@file:../../plugins/base":
+  version "7.0.0-SNAPSHOT"
+  dependencies:
+    "@geoladris/core" geoladris/core#master
     highcharts "^4.1.5"
     moment "^2.9.0"
     requirejs-text "^2.0.15"
@@ -19,9 +32,9 @@
     klaw-sync "^1.1.2"
     requirejs "^2.1.8"
 
-"@geoladris/core@geoladris/core#js_deps":
+"@geoladris/core@geoladris/core#master":
   version "6.0.0-SNAPSHOT-2017-05-15T14.53.12"
-  resolved "https://codeload.github.com/geoladris/core/tar.gz/9232303cfffb2cf8aa0f90e043ef3aaf594b61fc"
+  resolved "https://codeload.github.com/geoladris/core/tar.gz/2785b41b5269bf66329a6fa3f07727ef10be357e"
   dependencies:
     clean-css "^4.1.2"
     fs-extra "^2.1.2"
@@ -30,60 +43,60 @@
     requirejs "^2.1.8"
 
 "@geoladris/feedback@file:../../plugins/feedback":
-  version "6.0.0-SNAPSHOT"
+  version "7.0.0-SNAPSHOT"
   dependencies:
-    "@geoladris/core" geoladris/core#js_deps
+    "@geoladris/core" geoladris/core#master
 
 "@geoladris/footnote@file:../../plugins/footnote":
-  version "6.0.0-SNAPSHOT"
+  version "7.0.0-SNAPSHOT"
   dependencies:
-    "@geoladris/core" geoladris/core#js_deps
+    "@geoladris/core" geoladris/core#master
 
 "@geoladris/geojson@file:../../plugins/geojson":
-  version "6.0.0-SNAPSHOT"
+  version "7.0.0-SNAPSHOT"
   dependencies:
-    "@geoladris/core" geoladris/core#js_deps
+    "@geoladris/core" geoladris/core#master
     wellknown "^0.5.0"
 
 "@geoladris/language-buttons@file:../../plugins/language-buttons":
-  version "6.0.0-SNAPSHOT"
+  version "7.0.0-SNAPSHOT"
   dependencies:
-    "@geoladris/core" geoladris/core#js_deps
+    "@geoladris/core" geoladris/core#master
 
 "@geoladris/layer-order@file:../../plugins/layer-order":
-  version "6.0.0-SNAPSHOT"
+  version "7.0.0-SNAPSHOT"
   dependencies:
-    "@geoladris/core" geoladris/core#js_deps
+    "@geoladris/core" geoladris/core#master
 
 "@geoladris/layer-time-sliders@file:../../plugins/layer-time-sliders":
-  version "6.0.0-SNAPSHOT"
+  version "7.0.0-SNAPSHOT"
   dependencies:
-    "@geoladris/core" geoladris/core#js_deps
+    "@geoladris/core" geoladris/core#master
 
 "@geoladris/layers-editor@file:../../plugins/layers-editor":
-  version "6.0.0-SNAPSHOT"
+  version "7.0.0-SNAPSHOT"
   dependencies:
-    "@geoladris/core" geoladris/core#js_deps
+    "@geoladris/core" geoladris/core#master
 
 "@geoladris/ol2@file:../../plugins/ol2":
-  version "6.0.0-SNAPSHOT"
+  version "7.0.0-SNAPSHOT"
   dependencies:
-    "@geoladris/core" geoladris/core#js_deps
+    "@geoladris/core" geoladris/core#master
 
 "@geoladris/ol2Controls@file:../../plugins/ol2Controls":
-  version "6.0.0-SNAPSHOT"
+  version "7.0.0-SNAPSHOT"
   dependencies:
-    "@geoladris/core" geoladris/core#js_deps
+    "@geoladris/core" geoladris/core#master
 
 "@geoladris/time-slider@file:../../plugins/time-slider":
-  version "6.0.0-SNAPSHOT"
+  version "7.0.0-SNAPSHOT"
   dependencies:
-    "@geoladris/core" geoladris/core#js_deps
+    "@geoladris/core" geoladris/core#master
 
 "@geoladris/tour@file:../../plugins/tour":
-  version "6.0.0-SNAPSHOT"
+  version "7.0.0-SNAPSHOT"
   dependencies:
-    "@geoladris/core" geoladris/core#js_deps
+    "@geoladris/core" geoladris/core#master
 
 acorn-jsx@^3.0.0:
   version "3.0.1"
@@ -96,8 +109,8 @@ acorn@^3.0.4:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-3.3.0.tgz#45e37fb39e8da3f25baee3ff5369e2bb5f22017a"
 
 acorn@^5.0.1:
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.0.3.tgz#c460df08491463f028ccb82eab3730bf01087b3d"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.1.1.tgz#53fe161111f912ab999ee887a90a0bc52822fd75"
 
 ajv-keywords@^1.0.0:
   version "1.5.1"
@@ -118,6 +131,10 @@ ansi-regex@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-2.1.1.tgz#c3b33ab5ee360d86e0e628f0468ae7ef27d654df"
 
+ansi-regex@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-3.0.0.tgz#ed0317c322064f79466c02966bddb605ab37d998"
+
 ansi-styles@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-2.2.1.tgz#b432dd3358b634cf75e1e4664368240533c1ddbe"
@@ -135,8 +152,8 @@ arr-diff@^2.0.0:
     arr-flatten "^1.0.1"
 
 arr-flatten@^1.0.1:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/arr-flatten/-/arr-flatten-1.0.3.tgz#a274ed85ac08849b6bd7847c4580745dc51adfb1"
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/arr-flatten/-/arr-flatten-1.1.0.tgz#36048bbff4e7b47e136644316c99669ea5ae91f1"
 
 array-union@^1.0.1:
   version "1.0.2"
@@ -217,18 +234,18 @@ babel-types@^6.23.0, babel-types@^6.25.0:
     to-fast-properties "^1.0.1"
 
 babylon@^6.17.0, babylon@^6.17.2:
-  version "6.17.3"
-  resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.17.3.tgz#1327d709950b558f204e5352587fd0290f8d8e48"
+  version "6.17.4"
+  resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.17.4.tgz#3e8b7402b88d22c3423e137a1577883b15ff869a"
 
-balanced-match@^0.4.1:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-0.4.2.tgz#cb3f3e3c732dc0f01ee70b403f302e61d7709838"
+balanced-match@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
 brace-expansion@^1.1.7:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.7.tgz#3effc3c50e000531fb720eaff80f0ae8ef23cf59"
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.8.tgz#c07b211c7c952ec1f8efd51a77ef0d1d3990a292"
   dependencies:
-    balanced-match "^0.4.1"
+    balanced-match "^1.0.0"
     concat-map "0.0.1"
 
 braces@^1.8.2:
@@ -260,12 +277,12 @@ chalk@^1.0.0, chalk@^1.1.0, chalk@^1.1.1, chalk@^1.1.3:
     supports-color "^2.0.0"
 
 circular-json@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/circular-json/-/circular-json-0.3.1.tgz#be8b36aefccde8b3ca7aa2d6afc07a37242c0d2d"
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/circular-json/-/circular-json-0.3.3.tgz#815c99ea84f6809529d2f45791bdf82711352d66"
 
 clean-css@^4.1.2:
-  version "4.1.3"
-  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.1.3.tgz#07cfe8980edb20d455ddc23aadcf1e04c6e509ce"
+  version "4.1.7"
+  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.1.7.tgz#b9aea4f85679889cf3eae8b40349ec4ebdfdd032"
   dependencies:
     source-map "0.5.x"
 
@@ -291,7 +308,15 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
-concat-stream@^1.5.2, concat-stream@~1.5.0:
+concat-stream@^1.5.2:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/concat-stream/-/concat-stream-1.6.0.tgz#0aac662fd52be78964d5532f694784e70110acf7"
+  dependencies:
+    inherits "^2.0.3"
+    readable-stream "^2.2.2"
+    typedarray "^0.0.6"
+
+concat-stream@~1.5.0:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/concat-stream/-/concat-stream-1.5.2.tgz#708978624d856af41a5a741defdd261da752c266"
   dependencies:
@@ -374,8 +399,8 @@ es-to-primitive@^1.1.1:
     is-symbol "^1.0.1"
 
 es5-ext@^0.10.14, es5-ext@^0.10.9, es5-ext@~0.10.14:
-  version "0.10.23"
-  resolved "https://registry.yarnpkg.com/es5-ext/-/es5-ext-0.10.23.tgz#7578b51be974207a5487821b56538c224e4e7b38"
+  version "0.10.24"
+  resolved "https://registry.yarnpkg.com/es5-ext/-/es5-ext-0.10.24.tgz#a55877c9924bc0c8d9bd3c2cbe17495ac1709b14"
   dependencies:
     es6-iterator "2"
     es6-symbol "~3.1"
@@ -439,8 +464,8 @@ escope@^3.6.0:
     estraverse "^4.1.1"
 
 eslint-config-airbnb-es5@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-airbnb-es5/-/eslint-config-airbnb-es5-1.1.0.tgz#f342474fe7c8e02745707d1c5e3bca0a3ab9e968"
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-airbnb-es5/-/eslint-config-airbnb-es5-1.2.0.tgz#9518808fd876e2ce8294d51166b6b1359bd51f28"
   dependencies:
     strip-json-comments "1.0.2"
 
@@ -501,9 +526,9 @@ espree@^3.4.0:
     acorn "^5.0.1"
     acorn-jsx "^3.0.0"
 
-esprima@^3.1.1:
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/esprima/-/esprima-3.1.3.tgz#fdca51cee6133895e3c88d535ce49dbff62a4633"
+esprima@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.0.tgz#4499eddcd1110e0b218bacf2fa7f7f59f55ca804"
 
 esquery@^1.0.0:
   version "1.0.0"
@@ -512,19 +537,15 @@ esquery@^1.0.0:
     estraverse "^4.0.0"
 
 esrecurse@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/esrecurse/-/esrecurse-4.1.0.tgz#4713b6536adf7f2ac4f327d559e7756bff648220"
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/esrecurse/-/esrecurse-4.2.0.tgz#fa9568d98d3823f9a41d91e902dcab9ea6e5b163"
   dependencies:
-    estraverse "~4.1.0"
+    estraverse "^4.1.0"
     object-assign "^4.0.1"
 
-estraverse@^4.0.0, estraverse@^4.1.1, estraverse@^4.2.0:
+estraverse@^4.0.0, estraverse@^4.1.0, estraverse@^4.1.1, estraverse@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-4.2.0.tgz#0dee3fed31fcd469618ce7342099fc1afa0bdb13"
-
-estraverse@~4.1.0:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-4.1.1.tgz#f6caca728933a850ef90661d0e17982ba47111a2"
 
 esutils@^2.0.2:
   version "2.0.2"
@@ -695,7 +716,7 @@ has@^1.0.1:
     function-bind "^1.0.2"
 
 highcharts@^4.1.5:
-  version v4.2.7
+  version "4.2.7"
   resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-4.2.7.tgz#45cbed8e99c9c042e95f9c51076726496f686862"
 
 ignore@^3.2.0:
@@ -713,7 +734,7 @@ inflight@^1.0.4:
     once "^1.3.0"
     wrappy "1"
 
-inherits@2, inherits@~2.0.1:
+inherits@2, inherits@^2.0.3, inherits@~2.0.1, inherits@~2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
 
@@ -800,9 +821,15 @@ is-my-json-valid@^2.10.0:
     jsonpointer "^4.0.0"
     xtend "^4.0.0"
 
-is-number@^2.0.2, is-number@^2.1.0:
+is-number@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-2.1.0.tgz#01fcbbb393463a548f2f466cce16dece49db908f"
+  dependencies:
+    kind-of "^3.0.2"
+
+is-number@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/is-number/-/is-number-3.0.0.tgz#24fd6201a4782cf50561c810276afc7d12d71195"
   dependencies:
     kind-of "^3.0.2"
 
@@ -865,15 +892,15 @@ jquery@^2.1.0:
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
 
 js-tokens@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.1.tgz#08e9f132484a2c45a30907e9dc4d5567b7f114d7"
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
 
 js-yaml@^3.5.1:
-  version "3.8.4"
-  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.8.4.tgz#520b4564f86573ba96662af85a8cafa7b4b5a6f6"
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.9.0.tgz#4ffbbf25c2ac963b8299dc74da7e3740de1c18ce"
   dependencies:
     argparse "^1.0.7"
-    esprima "^3.1.1"
+    esprima "^4.0.0"
 
 json-stable-stringify@^1.0.0, json-stable-stringify@^1.0.1:
   version "1.0.1"
@@ -902,6 +929,12 @@ jsx-ast-utils@^1.3.4:
 kind-of@^3.0.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
+  dependencies:
+    is-buffer "^1.1.5"
+
+kind-of@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-4.0.0.tgz#20813df3d712928b207378691a45066fae72dd57"
   dependencies:
     is-buffer "^1.1.5"
 
@@ -1096,8 +1129,8 @@ pluralize@^1.2.1:
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-1.2.1.tgz#d1a21483fd22bb41e58a12fa3421823140897c45"
 
 popper.js@^1.0.2, popper.js@^1.9.9:
-  version "1.9.9"
-  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.9.9.tgz#bcc8d2e4e40fa0ce26ce33ee0f9f8e7ad8c75809"
+  version "1.10.8"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.10.8.tgz#0fd6343e68aa8c1cc8cfe35e02c673500a1bc609"
 
 prelude-ls@~1.1.2:
   version "1.1.2"
@@ -1116,11 +1149,23 @@ progress@^1.1.8:
   resolved "https://registry.yarnpkg.com/progress/-/progress-1.1.8.tgz#e260c78f6161cdd9b0e56cc3e0a85de17c7a57be"
 
 randomatic@^1.1.3:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/randomatic/-/randomatic-1.1.6.tgz#110dcabff397e9dcff7c0789ccc0a49adf1ec5bb"
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/randomatic/-/randomatic-1.1.7.tgz#c7abe9cc8b87c0baa876b19fde83fd464797e38c"
   dependencies:
-    is-number "^2.0.2"
-    kind-of "^3.0.2"
+    is-number "^3.0.0"
+    kind-of "^4.0.0"
+
+readable-stream@^2.2.2:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.3.tgz#368f2512d79f9d46fdfc71349ae7878bbc1eb95c"
+  dependencies:
+    core-util-is "~1.0.0"
+    inherits "~2.0.3"
+    isarray "~1.0.0"
+    process-nextick-args "~1.0.6"
+    safe-buffer "~5.1.1"
+    string_decoder "~1.0.3"
+    util-deprecate "~1.0.1"
 
 readable-stream@~2.0.0:
   version "2.0.6"
@@ -1182,8 +1227,8 @@ requirejs-text@^2.0.15:
   resolved "https://registry.yarnpkg.com/requirejs-text/-/requirejs-text-2.0.15.tgz#13138733613fc4457b7e1247e8cb751df7aa5429"
 
 requirejs@^2.1.8:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/requirejs/-/requirejs-2.3.3.tgz#aa59fd3a0287eaf407959a138228044b5dd6a6a3"
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/requirejs/-/requirejs-2.3.4.tgz#f45c48e66ebf0f163da57f6e0cf40fd57996ef50"
 
 resolve-from@^1.0.0:
   version "1.0.1"
@@ -1217,6 +1262,10 @@ run-async@^0.1.0:
 rx-lite@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-3.1.2.tgz#19ce502ca572665f3b647b10939f97fd1615f102"
+
+safe-buffer@~5.1.0, safe-buffer@~5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
 
 shelljs@^0.7.5:
   version "0.7.8"
@@ -1255,21 +1304,33 @@ string-width@^1.0.1:
     strip-ansi "^3.0.0"
 
 string-width@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/string-width/-/string-width-2.0.0.tgz#635c5436cc72a6e0c387ceca278d4e2eec52687e"
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/string-width/-/string-width-2.1.1.tgz#ab93f27a8dc13d28cac815c462143a6d9012ae9e"
   dependencies:
     is-fullwidth-code-point "^2.0.0"
-    strip-ansi "^3.0.0"
+    strip-ansi "^4.0.0"
 
 string_decoder@~0.10.x:
   version "0.10.31"
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
+
+string_decoder@~1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.0.3.tgz#0fc67d7c141825de94282dd536bec6b9bce860ab"
+  dependencies:
+    safe-buffer "~5.1.0"
 
 strip-ansi@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-3.0.1.tgz#6a385fb8853d952d5ff05d0e8aaf94278dc63dcf"
   dependencies:
     ansi-regex "^2.0.0"
+
+strip-ansi@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-4.0.0.tgz#a8479022eb1ac368a871389b635262c505ee368f"
+  dependencies:
+    ansi-regex "^3.0.0"
 
 strip-bom@^3.0.0:
   version "3.0.0"
@@ -1330,21 +1391,9 @@ typeahead.js@0.10.2:
   version "0.10.2"
   resolved "https://registry.yarnpkg.com/typeahead.js/-/typeahead.js-0.10.2.tgz#01ae3cd2faf8f2018c0434d18130ca5d38d951de"
 
-typedarray@~0.0.5:
+typedarray@^0.0.6, typedarray@~0.0.5:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
-
-"ui@file:../../../geobricks/geoladris-plugins/ui":
-  version "1.0.0"
-  dependencies:
-    "@geoladris/core" "file:../../../geoladris/core"
-    moment "2.5.1"
-    nouislider "9.2.0"
-    pikaday "1.5.1"
-    popper.js "^1.9.9"
-    sortablejs "1.4.2"
-    tooltip.js "^1.1.4"
-    typeahead.js "0.10.2"
 
 user-home@^2.0.0:
   version "2.0.0"
