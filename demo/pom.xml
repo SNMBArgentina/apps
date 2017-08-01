@@ -46,6 +46,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.fao.unredd</groupId>
+			<artifactId>auth</artifactId>
+			<version>${plugins.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fao.unredd</groupId>
 			<artifactId>layers-editor</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
@@ -84,7 +89,7 @@
 			<artifactId>layer-order</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
-		<!-- Other deployments may access other databases, so it is responsibility
+		<!-- Other deployments may access other databases, so it is responsibility 
 			of the application to include the necessary drivers -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
