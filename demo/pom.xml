@@ -40,6 +40,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.fao.unredd</groupId>
+			<artifactId>auth</artifactId>
+			<version>${plugins.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fao.unredd</groupId>
 			<artifactId>layers-editor</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
@@ -78,7 +83,7 @@
 			<artifactId>layer-order</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
-		<!-- Other deployments may access other databases, so it is responsibility
+		<!-- Other deployments may access other databases, so it is responsibility 
 			of the application to include the necessary drivers -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -205,16 +210,14 @@
 								<parameter>optimize=uglify2</parameter>
 								<!--<parameter>baseUrl=${baseDir}</parameter> -->
 							</optimizerParameters>
-							<!-- Whether or not to process configFile with maven filters. If you
-								use this option, some options in your configFile must resolve to absolute
+							<!-- Whether or not to process configFile with maven filters. If you 
+								use this option, some options in your configFile must resolve to absolute 
 								paths (see below) -->
 							<filterConfig>
 								true
 							</filterConfig>
 							<!-- Skip requirejs optimization if true -->
-							<!-- <skip>
-								false
-							</skip> -->
+							<!-- <skip> false </skip> -->
 						</configuration>
 					</plugin>
 				</plugins>

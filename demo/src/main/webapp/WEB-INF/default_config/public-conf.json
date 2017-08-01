@@ -19,5 +19,8 @@
 	},
 	"layers-editor" : {
 		"_enabled" : false
+	},
+	"auth": {
+		"_enabled": false
 	}
 }
