@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.fao.unredd.apps</groupId>
 	<artifactId>apps-root</artifactId>
-	<version>6.0.0</version>
+	<version>6.0.1</version>
 	<packaging>pom</packaging>
 
 	<modules>
@@ -17,7 +17,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<core.version>6.0.0</core.version>
-		<plugins.version>6.0.1</plugins.version>
+		<plugins.version>6.0.2</plugins.version>
 	</properties>
 
 	<repositories>

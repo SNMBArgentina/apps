@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.fao.unredd.apps</groupId>
 		<artifactId>apps-root</artifactId>
-		<version>6.0.0</version>
+		<version>6.0.1</version>
 	</parent>
 	<artifactId>examples</artifactId>
 	<name>examples</name>
