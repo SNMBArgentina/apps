@@ -1,14 +1,16 @@
 package org.fao.unredd.functional;
 
 import static junit.framework.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,9 +19,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
+import org.apache.catalina.Context;
+import org.apache.catalina.Globals;
+import org.apache.catalina.webresources.StandardRoot;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -31,6 +37,8 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.eclipse.jetty.plus.jndi.Resource;
+import org.eclipse.jetty.plus.webapp.EnvConfiguration;
+import org.eclipse.jetty.plus.webapp.PlusConfiguration;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
@@ -38,34 +46,46 @@ import org.eclipse.jetty.server.bio.SocketConnector;
 import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.webapp.WebAppContext;
-import org.fao.unredd.functional.feedback.FeedbackTest;
-import org.fao.unredd.functional.stats.StatsTest;
 import org.geoladris.Environment;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.postgresql.Driver;
 import org.postgresql.ds.PGSimpleDataSource;
 
-public class AbstractIntegrationTest {
+public class IntegrationTest {
+  public static final String PROPERTIES = "/integration-tests.properties";
+  public static final String CONFIG_DIR = "/config-dir";
 
-  private static final String CONTEXT_PATH = "portal";
+  public static final String PORTAL_PROPERTIES = "portal.properties";
+  public static final String PORTAL_PROPERTIES_TEMPLATE = "portal.properties.template";
+
+  public static final String ENV_EMAIL_PASSWORD = "GEOLADRIS_EMAIL_PASSWORD";
+
+  public static final String PROP_DB_URL = "db-url";
+  public static final String PROP_DB_USER = "db-user";
+  public static final String PROP_DB_PASS = "db-pass";
+  public static final String PROP_DB_SCHEMA = "db-schema";
+
+  private static final String CONTEXT_PATH = "demo";
   private static String dbUrl;
   private static String dbUser;
-  private static String dbPassword;
-  protected static String testSchema;
+  private static String dbPass;
+  protected static String dbSchema;
 
   @BeforeClass
-  public static void setupTests() throws IOException {
-    Properties testProperties = new Properties();
-    InputStream stream = FeedbackTest.class
-        .getResourceAsStream("/org/fao/unredd/functional/functional-test.properties");
-    testProperties.load(stream);
+  public static void setupTests() throws IOException, ClassNotFoundException {
+    Properties props = new Properties();
+    InputStream stream = IntegrationTest.class.getResourceAsStream(PROPERTIES);
+    props.load(stream);
     stream.close();
 
-    dbUrl = testProperties.getProperty("db-url");
-    dbUser = testProperties.getProperty("db-user");
-    dbPassword = testProperties.getProperty("db-password");
-    testSchema = testProperties.getProperty("db-test-schema");
+    dbUrl = props.getProperty(PROP_DB_URL);
+    dbUser = props.getProperty(PROP_DB_USER);
+    dbPass = props.getProperty(PROP_DB_PASS);
+    dbSchema = props.getProperty(PROP_DB_SCHEMA);
+
+    Class.forName(Driver.class.getCanonicalName());
   }
 
   private Server server;
@@ -73,39 +93,41 @@ public class AbstractIntegrationTest {
 
   @Before
   public void setup() throws Exception {
+    File configDir = new File(getClass().getResource(CONFIG_DIR).getFile());
+    File appConfigDir = new File(configDir, CONTEXT_PATH);
+    File template = new File(appConfigDir, PORTAL_PROPERTIES_TEMPLATE);
+    File portalProperties = new File(appConfigDir, PORTAL_PROPERTIES);
+    System.setProperty(Environment.CONFIG_DIR, configDir.getAbsolutePath());
+
     // Replace password with environment variable
-    File portalPropertiesFile = new File("test_config/" + CONTEXT_PATH + "/portal.properties");
-    String portalProperties = IOUtils.toString(portalPropertiesFile.toURI());
-    portalProperties = portalProperties.replaceAll(Pattern.quote("$password"),
-        System.getenv("ONUREDDMAILPASSWORD"));
-    BufferedOutputStream output =
-        new BufferedOutputStream(new FileOutputStream(portalPropertiesFile));
-    IOUtils.write(portalProperties, output);
+    String contents = IOUtils.toString(new FileInputStream(template));
+    contents = contents.replaceAll(Pattern.quote("$password"), Environment.getInstance().get(ENV_EMAIL_PASSWORD));
+    OutputStream output = new FileOutputStream(portalProperties);
+    IOUtils.write(contents, output);
     output.close();
 
-    System.setProperty(Environment.CONFIG_DIR, new File("test_config").getAbsolutePath());
-
     // Clean the database
-    Class.forName("org.postgresql.Driver");
-    Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
-    Statement statement = connection.createStatement();
-    statement.execute("DROP SCHEMA IF EXISTS " + testSchema + " CASCADE");
-    statement.execute("CREATE SCHEMA " + testSchema);
-    connection.close();
+    Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPass);
+    Statement st = conn.createStatement();
+    st.execute("DROP SCHEMA IF EXISTS " + dbSchema + " CASCADE");
+    st.execute("CREATE SCHEMA " + dbSchema);
+    conn.close();
 
     // Start the server
     server = new Server();
 
     WebAppContext handler = new WebAppContext();
     handler.setContextPath("/" + CONTEXT_PATH);
-    handler.setWar("../demo/target/demo.war");
-    String[] configurations = handler.getConfigurationClasses();
-    ArrayList<String> configurationList = new ArrayList<String>();
-    Collections.addAll(configurationList, configurations);
-    configurationList.add("org.eclipse.jetty.plus.webapp.EnvConfiguration");
-    configurationList.add("org.eclipse.jetty.plus.webapp.PlusConfiguration");
-    handler
-        .setConfigurationClasses(configurationList.toArray(new String[configurationList.size()]));
+    handler.setWar("target/demo.war");
+    StandardRoot root = new StandardRoot();
+    root.setContext(mock(Context.class));
+    handler.getServletContext().setAttribute(Globals.RESOURCES_ATTR, root);
+
+    List<String> config = new ArrayList<String>();
+    Collections.addAll(config, handler.getConfigurationClasses());
+    config.add(EnvConfiguration.class.getCanonicalName());
+    config.add(PlusConfiguration.class.getCanonicalName());
+    handler.setConfigurationClasses(config.toArray(new String[config.size()]));
 
     HandlerCollection handlers = new HandlerCollection();
     handlers.setHandlers(new Handler[] {handler, new DefaultHandler()});
@@ -117,24 +139,24 @@ public class AbstractIntegrationTest {
 
     dataSource = new PGSimpleDataSource();
     dataSource.setUser(dbUser);
-    dataSource.setPassword(dbPassword);
+    dataSource.setPassword(dbPass);
     dataSource.setUrl(dbUrl);
-    new Resource(handler, "jdbc/unredd-portal", dataSource);
+    new Resource(handler, "jdbc/geoladris", dataSource);
 
     server.start();
 
     // Install data tables in integration_tests
-    SQLExecute(getScript("redd_feedback.sql").replaceAll("redd_feedback",
+    execute(getScript("redd_feedback.sql").replaceAll("redd_feedback",
         "integration_tests.redd_feedback"));
-    SQLExecute(getScript("redd_stats_metadata.sql").replaceAll("CREATE TABLE ",
+    execute(getScript("redd_stats_metadata.sql").replaceAll("CREATE TABLE ",
         "CREATE TABLE integration_tests."));
     // Install functions in public
     executeDelimitedScript("redd_stats_calculator.sql");
-    SQLExecute(getScript("redd_stats_fajas.sql").replaceAll("redd_stats_fajas",
+    execute(getScript("redd_stats_fajas.sql").replaceAll("redd_stats_fajas",
         "integration_tests.redd_stats_fajas"));
 
     // Install test data
-    executeLines("data.sql", "schemaName", testSchema);
+    executeLines("/sql/data.sql", "schemaName", dbSchema);
   }
 
   @After
@@ -142,24 +164,24 @@ public class AbstractIntegrationTest {
     server.stop();
   }
 
-  protected Object SQLQuery(String sql) throws SQLException {
-    Connection connection = dataSource.getConnection();
-    Statement statement = connection.createStatement();
-    ResultSet resultSet = statement.executeQuery(sql);
+  protected Object query(String sql) throws SQLException {
+    Connection conn = dataSource.getConnection();
+    Statement st = conn.createStatement();
+    ResultSet resultSet = st.executeQuery(sql);
     assertTrue(resultSet.next());
     Object ret = resultSet.getObject(1);
     resultSet.close();
-    statement.close();
-    connection.close();
+    st.close();
+    conn.close();
     return ret;
   }
 
-  protected void SQLExecute(String sql) throws SQLException {
-    Connection connection = dataSource.getConnection();
-    Statement statement = connection.createStatement();
-    statement.execute(sql);
-    statement.close();
-    connection.close();
+  protected void execute(String sql) throws SQLException {
+    Connection conn = this.dataSource.getConnection();
+    Statement st = conn.createStatement();
+    st.execute(sql);
+    st.close();
+    conn.close();
   }
 
   /**
@@ -174,7 +196,7 @@ public class AbstractIntegrationTest {
   }
 
   protected String getScript(String resourceName) throws IOException {
-    InputStream stream = StatsTest.class.getResourceAsStream(resourceName);
+    InputStream stream = IntegrationTest.class.getResourceAsStream("/sql/" + resourceName);
     String script = IOUtils.toString(stream);
     stream.close();
     return script;
@@ -184,12 +206,12 @@ public class AbstractIntegrationTest {
     for (int i = 0; i < params.length; i += 2) {
       script = script.replaceAll(Pattern.quote("$" + params[i]), params[i + 1]);
     }
-    SQLExecute(script);
+    execute(script);
   }
 
   protected void executeLines(String resourceName, String... params)
       throws IOException, SQLException {
-    InputStream stream = StatsTest.class.getResourceAsStream(resourceName);
+    InputStream stream = IntegrationTest.class.getResourceAsStream(resourceName);
     BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
     String line = null;
     while ((line = reader.readLine()) != null) {

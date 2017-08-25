@@ -22,5 +22,8 @@
 	},
 	"auth": {
 		"_enabled": false
+	},
+	"time-slider": {
+		"_enabled": false
 	}
 }

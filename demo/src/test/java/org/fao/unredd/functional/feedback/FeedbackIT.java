@@ -5,13 +5,10 @@ import static junit.framework.Assert.assertFalse;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.fao.unredd.functional.AbstractIntegrationTest;
 import org.fao.unredd.functional.IntegrationTest;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 
-@Category(IntegrationTest.class)
-public class FeedbackTest extends AbstractIntegrationTest {
+public class FeedbackIT extends IntegrationTest {
 
   @Test
   public void testCommentAndVerify() throws Exception {
@@ -26,20 +23,20 @@ public class FeedbackTest extends AbstractIntegrationTest {
     assertEquals(200, ret.getStatusLine().getStatusCode());
 
     // Get the verification code from the database
-    String verificationCode = SQLQuery(
-        "SELECT verification_code FROM " + testSchema + ".redd_feedback ORDER BY date DESC")
+    String verificationCode =
+        query("SELECT verification_code FROM " + dbSchema + ".redd_feedback ORDER BY date DESC")
             .toString();
 
     // Check the insert
-    assertEquals(email, SQLQuery("SELECT email FROM " + testSchema
+    assertEquals(email, query("SELECT email FROM " + dbSchema
         + ".redd_feedback WHERE verification_code='" + verificationCode + "'"));
-    assertEquals(geometry, SQLQuery("SELECT ST_AsText(geometry) FROM " + testSchema
+    assertEquals(geometry, query("SELECT ST_AsText(geometry) FROM " + dbSchema
         + ".redd_feedback WHERE verification_code='" + verificationCode + "'"));
-    assertEquals(comment, SQLQuery("SELECT comment FROM " + testSchema
+    assertEquals(comment, query("SELECT comment FROM " + dbSchema
         + ".redd_feedback WHERE verification_code='" + verificationCode + "'"));
-    assertEquals(layerName, SQLQuery("SELECT layer_name FROM " + testSchema
+    assertEquals(layerName, query("SELECT layer_name FROM " + dbSchema
         + ".redd_feedback WHERE verification_code='" + verificationCode + "'"));
-    assertEquals(layerDate, SQLQuery("SELECT layer_date FROM " + testSchema
+    assertEquals(layerDate, query("SELECT layer_date FROM " + dbSchema
         + ".redd_feedback WHERE verification_code='" + verificationCode + "'"));
 
     // Verify it the comment
@@ -52,11 +49,11 @@ public class FeedbackTest extends AbstractIntegrationTest {
 
     // Check validation has not been notified to author
     Long notifiedCount =
-        (Long) SQLQuery("SELECT count(*) FROM " + testSchema + ".redd_feedback WHERE state=3");
+        (Long) query("SELECT count(*) FROM " + dbSchema + ".redd_feedback WHERE state=3");
     assertEquals(0, notifiedCount.longValue());
 
     // Validate the entry and wait (more than the notification delay)
-    SQLExecute("UPDATE " + testSchema + ".redd_feedback SET state=2 WHERE verification_code='"
+    execute("UPDATE " + dbSchema + ".redd_feedback SET state=2 WHERE verification_code='"
         + verificationCode + "'");
     synchronized (this) {
       wait(6000);
@@ -64,7 +61,7 @@ public class FeedbackTest extends AbstractIntegrationTest {
 
     // Check the entry has been marked as "notified"
     notifiedCount =
-        (Long) SQLQuery("SELECT count(*) FROM " + testSchema + ".redd_feedback WHERE state=3");
+        (Long) query("SELECT count(*) FROM " + dbSchema + ".redd_feedback WHERE state=3");
     assertEquals(1, notifiedCount.longValue());
   }
 
