@@ -1,11 +1,11 @@
-package org.fao.unredd.functional.feedback;
+package org.geoladris.functional.feedback;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.fao.unredd.functional.IntegrationTest;
+import org.geoladris.functional.IntegrationTest;
 import org.junit.Test;
 
 public class FeedbackIT extends IntegrationTest {

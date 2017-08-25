@@ -1,4 +1,4 @@
-package org.fao.unredd.functional.stats;
+package org.geoladris.functional.stats;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
@@ -8,7 +8,7 @@ import java.io.IOException;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.fao.unredd.functional.IntegrationTest;
+import org.geoladris.functional.IntegrationTest;
 import org.junit.Ignore;
 import org.junit.Test;
 

@@ -4,8 +4,8 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.fao.unredd.apps</groupId>
-		<artifactId>apps-root</artifactId>
+		<groupId>org.geoladris.apps</groupId>
+		<artifactId>root</artifactId>
 		<version>7.0.0-SNAPSHOT</version>
 	</parent>
 	<packaging>war</packaging>
@@ -55,57 +55,57 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>org.geoladris</groupId>
 			<artifactId>core</artifactId>
 			<version>${core.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>org.geoladris</groupId>
 			<artifactId>base</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>org.geoladris</groupId>
 			<artifactId>auth</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>org.geoladris</groupId>
 			<artifactId>layers-editor</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>org.geoladris</groupId>
 			<artifactId>footnote</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>org.geoladris</groupId>
 			<artifactId>feedback</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>org.geoladris</groupId>
 			<artifactId>layer-time-sliders</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>org.geoladris</groupId>
 			<artifactId>language-buttons</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>org.geoladris</groupId>
 			<artifactId>time-slider</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>org.geoladris</groupId>
 			<artifactId>tour</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.fao.unredd</groupId>
+			<groupId>org.geoladris</groupId>
 			<artifactId>layer-order</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
@@ -132,7 +132,7 @@
 		<dependency>
 			<groupId>de.csgis.geoladris</groupId>
 			<artifactId>ui</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>

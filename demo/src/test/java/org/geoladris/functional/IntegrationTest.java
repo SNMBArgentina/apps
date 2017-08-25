@@ -1,4 +1,4 @@
-package org.fao.unredd.functional;
+package org.geoladris.functional;
 
 import static junit.framework.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
