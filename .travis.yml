@@ -1,14 +1,16 @@
 language: java
 
 addons:
-  postgresql: "9.3"
+  postgresql: "9.5"
 
 before_script:
-  - psql -U postgres -c "create database spatialdata"
+  - psql -U postgres -c "create user docker with password 'docker'"
+  - psql -U postgres -c "create database geoladris_tests owner = docker"
   - psql -U postgres -d spatialdata -c "create extension postgis"
 
 script:
-  - mvn verify
+  - mvn verify -Pintegration-tests
 
 after_success:
   - mvn deploy -s deploy-settings.xml
+
