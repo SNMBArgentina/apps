@@ -10,7 +10,17 @@
 	</parent>
 	<packaging>war</packaging>
 	<artifactId>demo</artifactId>
-	<name>demo</name>
+	<name>Geoladris Demo App</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<core.version>7.0.0-SNAPSHOT</core.version>
+		<plugins.version>7.0.0-SNAPSHOT</plugins.version>
+		<!-- See https://nodejs.org/en/download/ for latest node version -->
+		<node.version>v6.10.1</node.version>
+		<!-- See https://yarnpkg.com/ for latest yarn version -->
+		<yarn.version>v0.23.2</yarn.version>
+	</properties>
 
 	<repositories>
 		<repository>
@@ -18,15 +28,23 @@
 			<name>GeoSolutions public maven repository</name>
 			<url>http://maven.geo-solutions.it/</url>
 		</repository>
+		<repository>
+			<id>geoladris releases</id>
+			<url>http://nullisland.geomati.co:8082/repository/releases/</url>
+		</repository>
+		<repository>
+			<id>geoladris snapshots</id>
+			<url>http://nullisland.geomati.co:8082/repository/snapshots/</url>
+		</repository>
+		<repository>
+			<id>csgis releases</id>
+			<url>http://service.csgis.de/mvn/repository/releases/</url>
+		</repository>
+		<repository>
+			<id>csgis snapshots</id>
+			<url>http://service.csgis.de/mvn/repository/snapshots/</url>
+		</repository>
 	</repositories>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- See https://nodejs.org/en/download/ for latest node version -->
-		<node.version>v6.10.1</node.version>
-		<!-- See https://yarnpkg.com/ for latest yarn version -->
-		<yarn.version>v0.23.2</yarn.version>
-	</properties>
 
 	<dependencies>
 		<dependency>

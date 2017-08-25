@@ -17,7 +17,28 @@
 		<node.version>v6.10.1</node.version>
 		<!-- See https://yarnpkg.com/ for latest yarn version -->
 		<yarn.version>v0.23.2</yarn.version>
+		<core.version>7.0.0-SNAPSHOT</core.version>
+		<plugins.version>7.0.0-SNAPSHOT</plugins.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>geoladris releases</id>
+			<url>http://nullisland.geomati.co:8082/repository/releases/</url>
+		</repository>
+		<repository>
+			<id>geoladris snapshots</id>
+			<url>http://nullisland.geomati.co:8082/repository/snapshots/</url>
+		</repository>
+		<repository>
+			<id>csgis releases</id>
+			<url>http://service.csgis.de/mvn/repository/releases/</url>
+		</repository>
+		<repository>
+			<id>csgis snapshots</id>
+			<url>http://service.csgis.de/mvn/repository/snapshots/</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<dependency>
