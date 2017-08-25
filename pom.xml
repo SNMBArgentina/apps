@@ -8,7 +8,7 @@
 
 	<modules>
 		<module>demo</module>
-		<module>geoladris-core</module>
+		<module>essential</module>
 	</modules>
 
 	<properties>

@@ -8,8 +8,8 @@
 	</parent>
 
 	<packaging>war</packaging>
-	<artifactId>geoladris-core</artifactId>
-	<name>Geoladris Core App</name>
+	<artifactId>essential</artifactId>
+	<name>Geoladris Essential App</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -27,7 +27,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>geoladris-core</finalName>
+		<finalName>essential</finalName>
 		<plugins>
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
