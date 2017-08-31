@@ -6,7 +6,7 @@ addons:
 before_script:
   - psql -U postgres -c "create user docker with password 'docker'"
   - psql -U postgres -c "create database geoladris_tests owner = docker"
-  - psql -U postgres -d spatialdata -c "create extension postgis"
+  - psql -U postgres -d geoladris_tests -c "create extension postgis"
 
 script:
   - mvn verify -Pintegration-tests
