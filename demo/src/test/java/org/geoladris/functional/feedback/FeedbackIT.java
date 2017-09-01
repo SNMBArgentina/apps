@@ -20,7 +20,7 @@ public class FeedbackIT extends IntegrationTest {
     CloseableHttpResponse ret = POST("create-comment", "email", email, "geometry", geometry,
         "comment", comment, "layerName", layerName, "date", layerDate);
 
-    // assertEquals(200, ret.getStatusLine().getStatusCode());
+    assertEquals(200, ret.getStatusLine().getStatusCode());
 
     // Get the verification code from the database
     String verificationCode =

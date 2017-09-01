@@ -12,7 +12,7 @@ before_script:
   - psql -U postgres -d geoladris_tests -c "create extension postgis"
 
 script:
-  - mvn verify -Pintegration-tests
+  - mvn verify
 
 after_success:
   - mvn deploy -s deploy-settings.xml
