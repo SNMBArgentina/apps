@@ -16,8 +16,8 @@
     typeahead.js "0.10.2"
 
 "@geoladris/core@dev":
-  version "7.0.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/@geoladris/core/-/core-7.0.0-alpha.2.tgz#f98d0bb4ed7619fabe6cf265ab2d91ccb312a951"
+  version "7.0.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/@geoladris/core/-/core-7.0.0-alpha.3.tgz#410b948f3dba1ed52e9b450849cc228be9d4890c"
   dependencies:
     clean-css "^4.1.2"
     fs-extra "^2.1.2"

@@ -16,8 +16,8 @@
     typeahead.js "0.10.2"
 
 "@geoladris/base@dev":
-  version "7.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@geoladris/base/-/base-7.0.0-alpha.0.tgz#eb3e0ae4476400fdaa1dc3472536bbf6b0e91e50"
+  version "7.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@geoladris/base/-/base-7.0.0-alpha.1.tgz#c6fc47ed2983394d26951888448bc49f2847746e"
   dependencies:
     "@geoladris/core" dev
     highcharts "^4.1.5"
@@ -25,8 +25,8 @@
     requirejs-text "^2.0.15"
 
 "@geoladris/core@dev":
-  version "7.0.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/@geoladris/core/-/core-7.0.0-alpha.2.tgz#f98d0bb4ed7619fabe6cf265ab2d91ccb312a951"
+  version "7.0.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/@geoladris/core/-/core-7.0.0-alpha.3.tgz#410b948f3dba1ed52e9b450849cc228be9d4890c"
   dependencies:
     clean-css "^4.1.2"
     fs-extra "^2.1.2"
@@ -35,69 +35,69 @@
     requirejs "^2.1.8"
 
 "@geoladris/feedback@dev":
-  version "7.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@geoladris/feedback/-/feedback-7.0.0-alpha.0.tgz#aec073eef2b90c99ac0802f642691da5a7d93e42"
+  version "7.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@geoladris/feedback/-/feedback-7.0.0-alpha.1.tgz#d68ea27c2f19840fc18195be0e19b3bac5e3993e"
   dependencies:
     "@geoladris/core" dev
 
 "@geoladris/footnote@dev":
-  version "7.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@geoladris/footnote/-/footnote-7.0.0-alpha.0.tgz#ff31a99a4f859778f184450af3d0b56ff7dd20cf"
+  version "7.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@geoladris/footnote/-/footnote-7.0.0-alpha.1.tgz#618675eb8e905c378271fab2b6997f5d693e540b"
   dependencies:
     "@geoladris/core" dev
 
 "@geoladris/geojson@dev":
-  version "7.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@geoladris/geojson/-/geojson-7.0.0-alpha.0.tgz#b68f19082bb650450b3821964c5b76435f83bafd"
+  version "7.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@geoladris/geojson/-/geojson-7.0.0-alpha.1.tgz#49a2f8b24fe4352bf2e3457a8498c51b4a1a6ba8"
   dependencies:
     "@geoladris/core" dev
     wellknown "^0.5.0"
 
 "@geoladris/language-buttons@dev":
-  version "7.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@geoladris/language-buttons/-/language-buttons-7.0.0-alpha.0.tgz#0cb9fbb309dca59942075af5dbfe7faf838dc2b1"
+  version "7.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@geoladris/language-buttons/-/language-buttons-7.0.0-alpha.1.tgz#c5cae18e679bbaea4398e6e435790ccc037e1a5d"
   dependencies:
     "@geoladris/core" dev
 
 "@geoladris/layer-order@dev":
-  version "7.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@geoladris/layer-order/-/layer-order-7.0.0-alpha.0.tgz#c52d0f3e21ef35ffda031bea1590af69d61f519a"
+  version "7.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@geoladris/layer-order/-/layer-order-7.0.0-alpha.1.tgz#f4df6bbed7846d881e35bbebbf0271d692dc7121"
   dependencies:
     "@geoladris/core" dev
 
 "@geoladris/layer-time-sliders@dev":
-  version "7.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@geoladris/layer-time-sliders/-/layer-time-sliders-7.0.0-alpha.0.tgz#f5e122338094e6785cf336aaa87a7314ecae6b90"
+  version "7.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@geoladris/layer-time-sliders/-/layer-time-sliders-7.0.0-alpha.1.tgz#e236fbb1585d247b1b6bb1059e370db71a73d2c2"
   dependencies:
     "@geoladris/core" dev
 
 "@geoladris/layers-editor@dev":
-  version "7.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@geoladris/layers-editor/-/layers-editor-7.0.0-alpha.1.tgz#862a42da3badbdd6ffb735c4e64359a32fb1558e"
+  version "7.0.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/@geoladris/layers-editor/-/layers-editor-7.0.0-alpha.3.tgz#fd56ff1b367eb14fe85d7265a91613baf2f4e418"
   dependencies:
     "@geoladris/core" dev
 
 "@geoladris/ol2@dev":
-  version "7.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@geoladris/ol2/-/ol2-7.0.0-alpha.0.tgz#ce4d118652deda12191ba763d867d5e97d8aa135"
+  version "7.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@geoladris/ol2/-/ol2-7.0.0-alpha.1.tgz#0436d808c762c85cebb808e6cf28a329d8300c97"
   dependencies:
     "@geoladris/core" dev
 
 "@geoladris/ol2controls@dev":
-  version "7.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@geoladris/ol2controls/-/ol2controls-7.0.0-alpha.0.tgz#5a72af9f9f4d60f17470a4e8c61c54317628c6b4"
+  version "7.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@geoladris/ol2controls/-/ol2controls-7.0.0-alpha.1.tgz#b470e19b15707df30e65f7aaa79811eebaa0fd30"
   dependencies:
     "@geoladris/core" dev
 
 "@geoladris/time-slider@dev":
-  version "7.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@geoladris/time-slider/-/time-slider-7.0.0-alpha.0.tgz#1d33dd7a293fc8da114556fdbccbd09b51b8c0db"
+  version "7.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@geoladris/time-slider/-/time-slider-7.0.0-alpha.1.tgz#fcdc36a5a2844a3b50541b1f0918f1806890a2fb"
   dependencies:
     "@geoladris/core" dev
 
 "@geoladris/tour@dev":
-  version "7.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@geoladris/tour/-/tour-7.0.0-alpha.0.tgz#f843b45ca0ec8b1389d575012c6b3f2993af58df"
+  version "7.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@geoladris/tour/-/tour-7.0.0-alpha.1.tgz#df082c002cce61ba6877ac020f2f147bee47f033"
   dependencies:
     "@geoladris/core" dev
 
