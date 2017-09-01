@@ -2,7 +2,7 @@
   "name": "geoladris-core",
   "version": "7.0.0-alpha.0",
   "dependencies": {
-    "@csgeoladris/ui": "csgis/geoladris-ui#master",
+    "@csgis-geoladris/ui": "dev",
     "@geoladris/core": "dev"
   },
   "devDependencies": {

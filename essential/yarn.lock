@@ -2,11 +2,11 @@
 # yarn lockfile v1
 
 
-"@csgeoladris/ui@csgis/geoladris-ui#master":
-  version "1.0.0"
-  resolved "https://codeload.github.com/csgis/geoladris-ui/tar.gz/de3c8d9bff79b4242ef99fd146457cb5a172af9d"
+"@csgis-geoladris/ui@dev":
+  version "1.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@csgis-geoladris/ui/-/ui-1.0.0-alpha.2.tgz#d6b7c5ee9d52f78927602b0490decbbbd6f2ca53"
   dependencies:
-    "@geoladris/core" geoladris/core#master
+    "@geoladris/core" dev
     moment "2.5.1"
     nouislider "9.2.0"
     pikaday "1.5.1"
@@ -18,16 +18,6 @@
 "@geoladris/core@dev":
   version "7.0.0-alpha.2"
   resolved "https://registry.yarnpkg.com/@geoladris/core/-/core-7.0.0-alpha.2.tgz#f98d0bb4ed7619fabe6cf265ab2d91ccb312a951"
-  dependencies:
-    clean-css "^4.1.2"
-    fs-extra "^2.1.2"
-    jquery "^2.1.0"
-    klaw-sync "^1.1.2"
-    requirejs "^2.1.8"
-
-"@geoladris/core@geoladris/core#master":
-  version "7.0.0-alpha.2"
-  resolved "https://codeload.github.com/geoladris/core/tar.gz/b360d19d2f4d2f8986fdca7b7d2624e9943c82aa"
   dependencies:
     clean-css "^4.1.2"
     fs-extra "^2.1.2"
@@ -254,8 +244,8 @@ concat-stream@^1.5.2:
     typedarray "^0.0.6"
 
 core-js@^2.4.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.0.tgz#569c050918be6486b3837552028ae0466b717086"
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.1.tgz#ae6874dc66937789b80754ff5428df66819ca50b"
 
 core-util-is@~1.0.0:
   version "1.0.2"
