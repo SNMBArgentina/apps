@@ -3,8 +3,8 @@
 
 
 "@csgis-geoladris/ui@dev":
-  version "1.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@csgis-geoladris/ui/-/ui-1.0.0-alpha.1.tgz#cd5c5428239d07b5d81845b0d9dfee0afb53c47d"
+  version "1.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@csgis-geoladris/ui/-/ui-1.0.0-alpha.2.tgz#d6b7c5ee9d52f78927602b0490decbbbd6f2ca53"
   dependencies:
     "@geoladris/core" dev
     moment "2.5.1"
