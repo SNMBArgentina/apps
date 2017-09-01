@@ -103,7 +103,7 @@
 			"queryType" : "wms",
 			"queryHighlightBounds" : true,
 			"queryFieldNames" : [ "nprov", "anio_f" ],
-			"queryFieldAliases" : [ "Nombre", "Fecha" ],
+			"queryFieldAliases" : [ "Nombre", "Fecha" ]
 		}, {
 			"id" : "incendios_wmsinfo_default",
 			"baseUrl" : "http://geo2.ambiente.gob.ar/portal/gs/wms",
