@@ -17,3 +17,9 @@ script:
 after_success:
   - mvn deploy -s deploy-settings.xml
 
+notifications:
+  email:
+    recipients:
+      - victor.gonzalez@geomati.co
+  on_success: always
+
