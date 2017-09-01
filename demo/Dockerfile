@@ -1,10 +1,12 @@
 FROM tomcat:8.5
 
-ARG REPO=snapshots
-ARG APP_NAME=demo
-ARG APP_VERSION=7.0.0-SNAPSHOT
+ARG GEOLADRIS_APP=demo
 
-ENV GEOLADRIS_CONFIG_DIR /var/geoladris
+COPY . /tmp/${GEOLADRIS_APP}
 
-RUN wget http://nullisland.geomati.co:8082/repository/snapshots/org/geoladris/apps/${APP_NAME}/${APP_VERSION}/${APP_NAME}-${APP_VERSION}.war -O /usr/local/tomcat/webapps/${APP_NAME}.war
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends openjdk-8-jdk-headless maven \
+	&& rm -rf /var/lib/apt/lists/*
 
+RUN mvn clean package -f /tmp/${GEOLADRIS_APP}/pom.xml \
+  && cp /tmp/${GEOLADRIS_APP}/target/${GEOLADRIS_APP}.war /usr/local/tomcat/webapps/${GEOLADRIS_APP}.war
