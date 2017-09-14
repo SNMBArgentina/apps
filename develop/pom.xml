@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.geoladris.apps</groupId>
+		<artifactId>root</artifactId>
+		<version>7.0.0-SNAPSHOT</version>
+	</parent>
+
+	<packaging>war</packaging>
+	<artifactId>develop</artifactId>
+	<name>Geoladris Develop App</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- See https://nodejs.org/en/download/ for latest node version -->
+		<node.version>v6.10.1</node.version>
+		<!-- See https://yarnpkg.com/ for latest yarn version -->
+		<yarn.version>v0.28.4</yarn.version>
+		<core.version>7.0.0-SNAPSHOT</core.version>
+		<plugins.version>7.0.0-SNAPSHOT</plugins.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>geosolutions</id>
+			<name>GeoSolutions public maven repository</name>
+			<url>http://maven.geo-solutions.it/</url>
+		</repository>
+		<repository>
+			<id>geoladris releases</id>
+			<url>http://nullisland.geomati.co:8082/repository/releases/</url>
+		</repository>
+		<repository>
+			<id>geoladris snapshots</id>
+			<url>http://nullisland.geomati.co:8082/repository/snapshots/</url>
+		</repository>
+		<repository>
+			<id>csgis releases</id>
+			<url>http://service.csgis.de/mvn/repository/releases/</url>
+		</repository>
+		<repository>
+			<id>csgis snapshots</id>
+			<url>http://service.csgis.de/mvn/repository/snapshots/</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.geoladris</groupId>
+			<artifactId>core</artifactId>
+			<version>${core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.geoladris</groupId>
+			<artifactId>base</artifactId>
+			<version>${plugins.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.geoladris</groupId>
+			<artifactId>auth</artifactId>
+			<version>${plugins.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.geoladris</groupId>
+			<artifactId>layers-editor</artifactId>
+			<version>${plugins.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.geoladris</groupId>
+			<artifactId>feedback</artifactId>
+			<version>${plugins.version}</version>
+		</dependency>
+		<!-- Other deployments may access other databases, so it is responsibility
+			of the application to include the necessary drivers -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.3-1102-jdbc4</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>proxy</groupId>
+			<artifactId>http_proxy</artifactId>
+			<version>1.0.5</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.mortbay.jetty</groupId>
+					<artifactId>servlet-api-2.5</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>develop</finalName>
+		<plugins>
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<id>install-node-and-yarn</id>
+						<goals>
+							<goal>install-node-and-yarn</goal>
+						</goals>
+						<configuration>
+							<nodeVersion>${node.version}</nodeVersion>
+							<yarnVersion>${yarn.version}</yarnVersion>
+						</configuration>
+					</execution>
+					<execution>
+						<id>yarn install</id>
+						<goals>
+							<goal>yarn</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>yarn-build</id>
+						<goals>
+							<goal>yarn</goal>
+						</goals>
+						<phase>prepare-package</phase>
+						<configuration>
+							<arguments>run build</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

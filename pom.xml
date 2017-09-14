@@ -9,6 +9,7 @@
 	<modules>
 		<module>demo</module>
 		<module>essential</module>
+		<module>develop</module>
 	</modules>
 
 	<distributionManagement>
