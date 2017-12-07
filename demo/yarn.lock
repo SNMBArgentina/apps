@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@csgis-geoladris/ui@dev":
+"@csgis-geoladris/ui@1.0.0-alpha.2":
   version "1.0.0-alpha.2"
   resolved "https://registry.yarnpkg.com/@csgis-geoladris/ui/-/ui-1.0.0-alpha.2.tgz#d6b7c5ee9d52f78927602b0490decbbbd6f2ca53"
   dependencies:
@@ -16,8 +16,8 @@
     typeahead.js "0.10.2"
 
 "@geoladris/base@dev":
-  version "7.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@geoladris/base/-/base-7.0.0-alpha.1.tgz#c6fc47ed2983394d26951888448bc49f2847746e"
+  version "7.0.0-alpha.4"
+  resolved "https://registry.yarnpkg.com/@geoladris/base/-/base-7.0.0-alpha.4.tgz#a64c0412234dc45389b179c1eb3f68cd9024bcaa"
   dependencies:
     "@geoladris/core" dev
     highcharts "^4.1.5"
@@ -25,8 +25,8 @@
     requirejs-text "^2.0.15"
 
 "@geoladris/core@dev":
-  version "7.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/@geoladris/core/-/core-7.0.0-alpha.3.tgz#410b948f3dba1ed52e9b450849cc228be9d4890c"
+  version "7.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@geoladris/core/-/core-7.0.0-alpha.5.tgz#caf6b418031f1cca52a95676c1b284203ccd111d"
   dependencies:
     clean-css "^4.1.2"
     fs-extra "^2.1.2"
@@ -35,69 +35,69 @@
     requirejs "^2.1.8"
 
 "@geoladris/feedback@dev":
-  version "7.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@geoladris/feedback/-/feedback-7.0.0-alpha.1.tgz#d68ea27c2f19840fc18195be0e19b3bac5e3993e"
+  version "7.0.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/@geoladris/feedback/-/feedback-7.0.0-alpha.3.tgz#8b3c8aec0c94adbe10d1c75518393173774527ab"
   dependencies:
     "@geoladris/core" dev
 
 "@geoladris/footnote@dev":
-  version "7.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@geoladris/footnote/-/footnote-7.0.0-alpha.1.tgz#618675eb8e905c378271fab2b6997f5d693e540b"
+  version "7.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@geoladris/footnote/-/footnote-7.0.0-alpha.2.tgz#de61e76295048827e0746a4c5fe0e46afcbf96c2"
   dependencies:
     "@geoladris/core" dev
 
 "@geoladris/geojson@dev":
-  version "7.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@geoladris/geojson/-/geojson-7.0.0-alpha.1.tgz#49a2f8b24fe4352bf2e3457a8498c51b4a1a6ba8"
+  version "7.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@geoladris/geojson/-/geojson-7.0.0-alpha.2.tgz#272122e79c04f7c33f70aaeaa7b012aaf3494f41"
   dependencies:
     "@geoladris/core" dev
     wellknown "^0.5.0"
 
 "@geoladris/language-buttons@dev":
-  version "7.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@geoladris/language-buttons/-/language-buttons-7.0.0-alpha.1.tgz#c5cae18e679bbaea4398e6e435790ccc037e1a5d"
+  version "7.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@geoladris/language-buttons/-/language-buttons-7.0.0-alpha.2.tgz#6d543f26a3d3ee86daa6a12f6f3c5aeda08e9ef2"
   dependencies:
     "@geoladris/core" dev
 
 "@geoladris/layer-order@dev":
-  version "7.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@geoladris/layer-order/-/layer-order-7.0.0-alpha.1.tgz#f4df6bbed7846d881e35bbebbf0271d692dc7121"
+  version "7.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@geoladris/layer-order/-/layer-order-7.0.0-alpha.2.tgz#a7a0981f1f78be9107db15411d006336a36ba7b4"
   dependencies:
     "@geoladris/core" dev
 
 "@geoladris/layer-time-sliders@dev":
-  version "7.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@geoladris/layer-time-sliders/-/layer-time-sliders-7.0.0-alpha.1.tgz#e236fbb1585d247b1b6bb1059e370db71a73d2c2"
+  version "7.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@geoladris/layer-time-sliders/-/layer-time-sliders-7.0.0-alpha.2.tgz#6ff8e62a045604ae42372f572f70559991bb12de"
   dependencies:
     "@geoladris/core" dev
 
 "@geoladris/layers-editor@dev":
-  version "7.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/@geoladris/layers-editor/-/layers-editor-7.0.0-alpha.3.tgz#fd56ff1b367eb14fe85d7265a91613baf2f4e418"
+  version "7.0.0-alpha.4"
+  resolved "https://registry.yarnpkg.com/@geoladris/layers-editor/-/layers-editor-7.0.0-alpha.4.tgz#0a32c2af33419afc3af3a433dfd10cb99096fb17"
   dependencies:
     "@geoladris/core" dev
 
 "@geoladris/ol2@dev":
-  version "7.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@geoladris/ol2/-/ol2-7.0.0-alpha.1.tgz#0436d808c762c85cebb808e6cf28a329d8300c97"
+  version "7.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@geoladris/ol2/-/ol2-7.0.0-alpha.2.tgz#7b58a47db334535c3cc627474039a40c3db70339"
   dependencies:
     "@geoladris/core" dev
 
 "@geoladris/ol2controls@dev":
-  version "7.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@geoladris/ol2controls/-/ol2controls-7.0.0-alpha.1.tgz#b470e19b15707df30e65f7aaa79811eebaa0fd30"
+  version "7.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@geoladris/ol2controls/-/ol2controls-7.0.0-alpha.2.tgz#dadf19003514aac1499d1173e10d3d9b101f5489"
   dependencies:
     "@geoladris/core" dev
 
 "@geoladris/time-slider@dev":
-  version "7.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@geoladris/time-slider/-/time-slider-7.0.0-alpha.1.tgz#fcdc36a5a2844a3b50541b1f0918f1806890a2fb"
+  version "7.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@geoladris/time-slider/-/time-slider-7.0.0-alpha.2.tgz#9d30572c31406a31b8bafbae805d19dd31b250f4"
   dependencies:
     "@geoladris/core" dev
 
 "@geoladris/tour@dev":
-  version "7.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@geoladris/tour/-/tour-7.0.0-alpha.1.tgz#df082c002cce61ba6877ac020f2f147bee47f033"
+  version "7.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@geoladris/tour/-/tour-7.0.0-alpha.2.tgz#bd24bc9ea2e04b1e7a057d14541a5baeeedba91c"
   dependencies:
     "@geoladris/core" dev
 
@@ -111,9 +111,9 @@ acorn@^3.0.4:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-3.3.0.tgz#45e37fb39e8da3f25baee3ff5369e2bb5f22017a"
 
-acorn@^5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.1.1.tgz#53fe161111f912ab999ee887a90a0bc52822fd75"
+acorn@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.2.1.tgz#317ac7821826c22c702d66189ab8359675f135d7"
 
 ajv-keywords@^1.0.0:
   version "1.5.1"
@@ -284,8 +284,8 @@ circular-json@^0.3.1:
   resolved "https://registry.yarnpkg.com/circular-json/-/circular-json-0.3.3.tgz#815c99ea84f6809529d2f45791bdf82711352d66"
 
 clean-css@^4.1.2:
-  version "4.1.7"
-  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.1.7.tgz#b9aea4f85679889cf3eae8b40349ec4ebdfdd032"
+  version "4.1.9"
+  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.1.9.tgz#35cee8ae7687a49b98034f70de00c4edd3826301"
   dependencies:
     source-map "0.5.x"
 
@@ -342,8 +342,8 @@ d@1:
     es5-ext "^0.10.9"
 
 debug@^2.1.1, debug@^2.6.8:
-  version "2.6.8"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.8.tgz#e731531ca2ede27d188222427da17821d68ff4fc"
+  version "2.6.9"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
   dependencies:
     ms "2.0.0"
 
@@ -378,15 +378,14 @@ doctrine@^1.2.2:
     isarray "^1.0.0"
 
 doctrine@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-2.0.0.tgz#c73d8d2909d22291e1a007a395804da8b665fe63"
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-2.0.2.tgz#68f96ce8efc56cc42651f1faadb4f175273b0075"
   dependencies:
     esutils "^2.0.2"
-    isarray "^1.0.0"
 
 es-abstract@^1.7.0:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.8.1.tgz#fd85a3bdfa67786ce7be7e1584678e119cd70c04"
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.10.0.tgz#1ecb36c197842a00d8ee4c2dfd8646bb97d60864"
   dependencies:
     es-to-primitive "^1.1.1"
     function-bind "^1.1.1"
@@ -402,20 +401,20 @@ es-to-primitive@^1.1.1:
     is-date-object "^1.0.1"
     is-symbol "^1.0.1"
 
-es5-ext@^0.10.14, es5-ext@^0.10.9, es5-ext@~0.10.14:
-  version "0.10.30"
-  resolved "https://registry.yarnpkg.com/es5-ext/-/es5-ext-0.10.30.tgz#7141a16836697dbabfaaaeee41495ce29f52c939"
+es5-ext@^0.10.14, es5-ext@^0.10.35, es5-ext@^0.10.9, es5-ext@~0.10.14:
+  version "0.10.37"
+  resolved "https://registry.yarnpkg.com/es5-ext/-/es5-ext-0.10.37.tgz#0ee741d148b80069ba27d020393756af257defc3"
   dependencies:
-    es6-iterator "2"
-    es6-symbol "~3.1"
+    es6-iterator "~2.0.1"
+    es6-symbol "~3.1.1"
 
-es6-iterator@2, es6-iterator@^2.0.1, es6-iterator@~2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/es6-iterator/-/es6-iterator-2.0.1.tgz#8e319c9f0453bf575d374940a655920e59ca5512"
+es6-iterator@^2.0.1, es6-iterator@~2.0.1:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/es6-iterator/-/es6-iterator-2.0.3.tgz#a7de889141a05a94b0854403b2d0a0fbfa98f3b7"
   dependencies:
     d "1"
-    es5-ext "^0.10.14"
-    es6-symbol "^3.1"
+    es5-ext "^0.10.35"
+    es6-symbol "^3.1.1"
 
 es6-map@^0.1.3:
   version "0.1.5"
@@ -438,7 +437,7 @@ es6-set@~0.1.5:
     es6-symbol "3.1.1"
     event-emitter "~0.3.5"
 
-es6-symbol@3.1.1, es6-symbol@^3.1, es6-symbol@^3.1.1, es6-symbol@~3.1, es6-symbol@~3.1.1:
+es6-symbol@3.1.1, es6-symbol@^3.1.1, es6-symbol@~3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/es6-symbol/-/es6-symbol-3.1.1.tgz#bf00ef4fdab6ba1b46ecb7b629b4c7ed5715cc77"
   dependencies:
@@ -524,10 +523,10 @@ eslint@^3.18.0:
     user-home "^2.0.0"
 
 espree@^3.4.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/espree/-/espree-3.5.0.tgz#98358625bdd055861ea27e2867ea729faf463d8d"
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/espree/-/espree-3.5.2.tgz#756ada8b979e9dcfcdb30aad8d1a9304a905e1ca"
   dependencies:
-    acorn "^5.1.1"
+    acorn "^5.2.1"
     acorn-jsx "^3.0.0"
 
 esprima@^4.0.0:
@@ -617,8 +616,8 @@ fill-range@^2.1.0:
     repeat-string "^1.5.2"
 
 flat-cache@^1.2.1:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/flat-cache/-/flat-cache-1.2.2.tgz#fa86714e72c21db88601761ecf2f555d1abc6b96"
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/flat-cache/-/flat-cache-1.3.0.tgz#d3030b32b38154f4e3b7e9c709f490f7ef97c481"
   dependencies:
     circular-json "^0.3.1"
     del "^2.0.2"
@@ -724,8 +723,8 @@ highcharts@^4.1.5:
   resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-4.2.7.tgz#45cbed8e99c9c042e95f9c51076726496f686862"
 
 ignore@^3.2.0:
-  version "3.3.5"
-  resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.5.tgz#c4e715455f6073a8d7e5dae72d2fc9d71663dba6"
+  version "3.3.7"
+  resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.7.tgz#612289bfb3c220e186a58118618d5be8c1bab021"
 
 imurmurhash@^0.1.4:
   version "0.1.4"
@@ -761,8 +760,8 @@ inquirer@^0.12.0:
     through "^2.3.6"
 
 interpret@^1.0.0:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.0.3.tgz#cbc35c62eeee73f19ab7b10a801511401afc0f90"
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.1.0.tgz#7ed1b1410c6a0e0f78cf95d3b8440c63f78b8614"
 
 invariant@^2.2.2:
   version "2.2.2"
@@ -771,8 +770,8 @@ invariant@^2.2.2:
     loose-envify "^1.0.0"
 
 is-buffer@^1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.5.tgz#1f3b26ef613b214b88cbca23cc6c01d87961eecc"
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
 
 is-callable@^1.1.1, is-callable@^1.1.3:
   version "1.1.3"
@@ -848,8 +847,8 @@ is-path-in-cwd@^1.0.0:
     is-path-inside "^1.0.0"
 
 is-path-inside@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/is-path-inside/-/is-path-inside-1.0.0.tgz#fc06e5a1683fbda13de667aff717bbc10a48f37f"
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/is-path-inside/-/is-path-inside-1.0.1.tgz#8ef5b7de50437a3fdca6b4e865ef7aa55cb48036"
   dependencies:
     path-is-inside "^1.0.1"
 
@@ -900,8 +899,8 @@ js-tokens@^3.0.0, js-tokens@^3.0.2:
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
 
 js-yaml@^3.5.1:
-  version "3.9.1"
-  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.9.1.tgz#08775cebdfdd359209f0d2acd383c8f86a6904a0"
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.10.0.tgz#2e78441646bd4682e963f22b6e92823c309c62dc"
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
@@ -1010,8 +1009,8 @@ moment@2.5.1:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.5.1.tgz#7146a3900533064ca799d5e792f4e480ee0e82bc"
 
 moment@2.x, moment@^2.9.0:
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
+  version "2.19.3"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.3.tgz#bdb99d270d6d7fda78cc0fbace855e27fe7da69f"
 
 ms@2.0.0:
   version "2.0.0"
@@ -1133,8 +1132,8 @@ pluralize@^1.2.1:
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-1.2.1.tgz#d1a21483fd22bb41e58a12fa3421823140897c45"
 
 popper.js@^1.0.2, popper.js@^1.9.9:
-  version "1.12.5"
-  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.12.5.tgz#229e4dea01629e1f1a1e26991ffade5024220fa6"
+  version "1.12.9"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.12.9.tgz#0dfbc2dff96c451bb332edcfcfaaf566d331d5b3"
 
 prelude-ls@~1.1.2:
   version "1.1.2"
@@ -1201,11 +1200,10 @@ regenerator-runtime@^0.11.0:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.0.tgz#7e54fe5b5ccd5d6624ea6255c3473be090b802e1"
 
 regex-cache@^0.4.2:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/regex-cache/-/regex-cache-0.4.3.tgz#9b1a6c35d4d0dfcef5711ae651e8e9d3d7114145"
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/regex-cache/-/regex-cache-0.4.4.tgz#75bdc58a2a1496cec48a12835bc54c8d562336dd"
   dependencies:
     is-equal-shallow "^0.1.3"
-    is-primitive "^2.0.0"
 
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
@@ -1239,8 +1237,8 @@ resolve-from@^1.0.0:
   resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-1.0.1.tgz#26cbfe935d1aeeeabb29bc3fe5aeb01e93d44226"
 
 resolve@^1.1.6:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.4.0.tgz#a75be01c53da25d934a98ebd0e4c4a7312f92a86"
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.5.0.tgz#1f09acce796c9a762579f31b2c1cc4c3cddf9f36"
   dependencies:
     path-parse "^1.0.5"
 
@@ -1252,8 +1250,8 @@ restore-cursor@^1.0.1:
     onetime "^1.0.0"
 
 rimraf@^2.2.8:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.1.tgz#c2338ec643df7a1b7fe5c54fa86f57428a55f33d"
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.2.tgz#2ed8150d24a16ea8651e6d6ef0f47c4158ce7a36"
   dependencies:
     glob "^7.0.5"
 
@@ -1376,8 +1374,8 @@ to-fast-properties@^1.0.3:
   resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-1.0.3.tgz#b83571fa4d8c25b82e231b06e3a3055de4ca1a47"
 
 tooltip.js@^1.1.4:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/tooltip.js/-/tooltip.js-1.1.5.tgz#740703c7c0a52ff72bd3ae3e78c12a8609997a71"
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/tooltip.js/-/tooltip.js-1.1.7.tgz#1c5fa5cd6d75f2502fb9590f9b10fc85e670477c"
   dependencies:
     popper.js "^1.0.2"
 

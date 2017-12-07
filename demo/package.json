@@ -2,7 +2,7 @@
   "name": "demo",
   "version": "7.0.0-alpha.0",
   "dependencies": {
-    "@csgis-geoladris/ui": "dev",
+    "@csgis-geoladris/ui": "1.0.0-alpha.2",
     "@geoladris/base": "dev",
     "@geoladris/core": "dev",
     "@geoladris/feedback": "dev",
