@@ -15,6 +15,12 @@
     tooltip.js "^1.1.4"
     typeahead.js "0.10.2"
 
+"@geoladris/auth@dev":
+  version "7.0.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/@geoladris/auth/-/auth-7.0.0-alpha.3.tgz#455584af19dc7cc4467f114547dd3d293a5b25c5"
+  dependencies:
+    "@geoladris/core" dev
+
 "@geoladris/base@dev":
   version "7.0.0-alpha.4"
   resolved "https://registry.yarnpkg.com/@geoladris/base/-/base-7.0.0-alpha.4.tgz#a64c0412234dc45389b179c1eb3f68cd9024bcaa"
