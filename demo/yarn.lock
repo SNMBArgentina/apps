@@ -21,9 +21,9 @@
   dependencies:
     "@geoladris/core" dev
 
-"@geoladris/base@dev":
-  version "7.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@geoladris/base/-/base-7.0.0-alpha.4.tgz#a64c0412234dc45389b179c1eb3f68cd9024bcaa"
+"@geoladris/base@^7.0.0-alpha.5":
+  version "7.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@geoladris/base/-/base-7.0.0-alpha.5.tgz#e68e077016332cc59dec33884c3971122c026217"
   dependencies:
     "@geoladris/core" dev
     highcharts "^4.1.5"
@@ -334,8 +334,8 @@ concat-stream@~1.5.0:
     typedarray "~0.0.5"
 
 core-js@^2.4.0:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.1.tgz#ae6874dc66937789b80754ff5428df66819ca50b"
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.3.tgz#8acc38345824f16d8365b7c9b4259168e8ed603e"
 
 core-util-is@~1.0.0:
   version "1.0.2"
@@ -1015,8 +1015,8 @@ moment@2.5.1:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.5.1.tgz#7146a3900533064ca799d5e792f4e480ee0e82bc"
 
 moment@2.x, moment@^2.9.0:
-  version "2.19.3"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.3.tgz#bdb99d270d6d7fda78cc0fbace855e27fe7da69f"
+  version "2.19.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.4.tgz#17e5e2c6ead8819c8ecfad83a0acccb312e94682"
 
 ms@2.0.0:
   version "2.0.0"
@@ -1202,8 +1202,8 @@ rechoir@^0.6.2:
     resolve "^1.1.6"
 
 regenerator-runtime@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.0.tgz#7e54fe5b5ccd5d6624ea6255c3473be090b802e1"
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
 
 regex-cache@^0.4.2:
   version "0.4.4"
