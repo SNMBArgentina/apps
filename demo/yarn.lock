@@ -21,9 +21,9 @@
   dependencies:
     "@geoladris/core" dev
 
-"@geoladris/base@^7.0.0-alpha.6":
-  version "7.0.0-alpha.6"
-  resolved "https://registry.yarnpkg.com/@geoladris/base/-/base-7.0.0-alpha.6.tgz#be433e511b72bd392c3cb458f84dc286db7dc26a"
+"@geoladris/base@^7.0.0-alpha.7":
+  version "7.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/@geoladris/base/-/base-7.0.0-alpha.7.tgz#c79a79b71ee8180c61ccc80acaef295c09ef253f"
   dependencies:
     "@geoladris/core" dev
     highcharts "^4.1.5"
@@ -40,9 +40,9 @@
     klaw-sync "^1.1.2"
     requirejs "^2.1.8"
 
-"@geoladris/feedback@dev":
-  version "7.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/@geoladris/feedback/-/feedback-7.0.0-alpha.3.tgz#8b3c8aec0c94adbe10d1c75518393173774527ab"
+"@geoladris/feedback@^7.0.0-alpha.4":
+  version "7.0.0-alpha.4"
+  resolved "https://registry.yarnpkg.com/@geoladris/feedback/-/feedback-7.0.0-alpha.4.tgz#5f73016c3864df879453feb3f10e393b3887b656"
   dependencies:
     "@geoladris/core" dev
 
@@ -877,10 +877,8 @@ is-regex@^1.0.4:
     has "^1.0.1"
 
 is-resolvable@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/is-resolvable/-/is-resolvable-1.0.0.tgz#8df57c61ea2e3c501408d100fb013cf8d6e0cc62"
-  dependencies:
-    tryit "^1.0.1"
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/is-resolvable/-/is-resolvable-1.0.1.tgz#acca1cd36dbe44b974b924321555a70ba03b1cf4"
 
 is-symbol@^1.0.1:
   version "1.0.1"
@@ -1384,10 +1382,6 @@ tooltip.js@^1.1.4:
   resolved "https://registry.yarnpkg.com/tooltip.js/-/tooltip.js-1.1.7.tgz#1c5fa5cd6d75f2502fb9590f9b10fc85e670477c"
   dependencies:
     popper.js "^1.0.2"
-
-tryit@^1.0.1:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/tryit/-/tryit-1.0.3.tgz#393be730a9446fd1ead6da59a014308f36c289cb"
 
 type-check@~0.3.2:
   version "0.3.2"
