@@ -1,12 +1,16 @@
 FROM tomcat:8.5
 
-ARG GEOLADRIS_APP=demo
+ENV APP /tmp/geoladris-app
 
-COPY . /tmp/${GEOLADRIS_APP}
+COPY . ${APP}
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends openjdk-8-jdk-headless maven \
-	&& rm -rf /var/lib/apt/lists/*
+  && mvn clean package -f ${APP}/pom.xml \
+  && rm -rf /usr/local/tomcat/webapps/ROOT \
+  && cp ${APP}/target/*.war /usr/local/tomcat/webapps/ROOT.war \
+  && apt-get purge -y openjdk-8-jdk-headless maven \
+  && apt-get autoremove -y \
+  && apt-get autoclean -y \
+  && rm -rf ${APP} ~/.m2 /var/lib/apt/lists/*
 
-RUN mvn clean package -f /tmp/${GEOLADRIS_APP}/pom.xml \
-  && cp /tmp/${GEOLADRIS_APP}/target/${GEOLADRIS_APP}.war /usr/local/tomcat/webapps/${GEOLADRIS_APP}.war
