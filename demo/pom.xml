@@ -4,37 +4,29 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.geoladris.apps</groupId>
-		<artifactId>root</artifactId>
+		<groupId>com.github.geoladris</groupId>
+		<artifactId>apps</artifactId>
 		<version>7.0.0-SNAPSHOT</version>
 	</parent>
-	<packaging>war</packaging>
-	<artifactId>demo</artifactId>
-	<name>Geoladris Demo App</name>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<core.version>7.0.0-SNAPSHOT</core.version>
-		<plugins.version>7.0.0-SNAPSHOT</plugins.version>
-		<!-- See https://nodejs.org/en/download/ for latest node version -->
-		<node.version>v6.10.1</node.version>
-		<!-- See https://yarnpkg.com/ for latest yarn version -->
-		<yarn.version>v0.28.4</yarn.version>
-	</properties>
+	<groupId>com.github.geoladris.apps</groupId>
+	<artifactId>demo</artifactId>
+	<name>Demo</name>
+	<description>Demo app for Geoladris</description>
+	<url>https://github.com/geoladris/apps</url>
+	<packaging>war</packaging>
+
+	<scm>
+		<connection>scm:git:git://github.com/geoladris/apps.git</connection>
+		<developerConnection>scm:git:ssh://github.com:geoladris/apps.git</developerConnection>
+		<url>http://github.com/geoladris/apps/tree/master/demo</url>
+	</scm>
 
 	<repositories>
 		<repository>
 			<id>geosolutions</id>
 			<name>GeoSolutions public maven repository</name>
 			<url>http://maven.geo-solutions.it/</url>
-		</repository>
-		<repository>
-			<id>geoladris releases</id>
-			<url>http://nullisland.geomati.co:8082/repository/releases/</url>
-		</repository>
-		<repository>
-			<id>geoladris snapshots</id>
-			<url>http://nullisland.geomati.co:8082/repository/snapshots/</url>
 		</repository>
 		<repository>
 			<id>csgis releases</id>
@@ -109,7 +101,7 @@
 			<artifactId>layer-order</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
-		<!-- Other deployments may access other databases, so it is responsibility
+		<!-- Other deployments may access other databases, so it is responsibility 
 			of the application to include the necessary drivers -->
 		<dependency>
 			<groupId>org.postgresql</groupId>

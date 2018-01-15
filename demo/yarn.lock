@@ -21,9 +21,9 @@
   dependencies:
     "@geoladris/core" dev
 
-"@geoladris/base@^7.0.0-alpha.7":
-  version "7.0.0-alpha.7"
-  resolved "https://registry.yarnpkg.com/@geoladris/base/-/base-7.0.0-alpha.7.tgz#c79a79b71ee8180c61ccc80acaef295c09ef253f"
+"@geoladris/base@dev":
+  version "7.0.0-alpha.9"
+  resolved "https://registry.yarnpkg.com/@geoladris/base/-/base-7.0.0-alpha.9.tgz#048dce4b7f888ca476f9a94b839aadf168ffca32"
   dependencies:
     "@geoladris/core" dev
     highcharts "^4.1.5"
@@ -40,7 +40,7 @@
     klaw-sync "^1.1.2"
     requirejs "^2.1.8"
 
-"@geoladris/feedback@^7.0.0-alpha.4":
+"@geoladris/feedback@dev":
   version "7.0.0-alpha.4"
   resolved "https://registry.yarnpkg.com/@geoladris/feedback/-/feedback-7.0.0-alpha.4.tgz#5f73016c3864df879453feb3f10e393b3887b656"
   dependencies:

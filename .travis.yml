@@ -1,28 +1,29 @@
 language: java
-
 jdk:
-  - oraclejdk8
-
+- oraclejdk8
 addons:
   postgresql: "9.5"
   apt:
     packages:
     - postgresql-9.5-postgis-2.3
-
 before_script:
-  - psql -U postgres -c "create user docker with password 'docker'"
-  - psql -U postgres -c "create database geoladris_tests owner = docker"
-  - psql -U postgres -d geoladris_tests -c "create extension postgis"
-
+- psql -U postgres -c "create user docker with password 'docker'"
+- psql -U postgres -c "create database geoladris_tests owner = docker"
+- psql -U postgres -d geoladris_tests -c "create extension postgis"
 script:
-  - mvn verify
+- mvn verify
 
 after_success:
-  - mvn deploy -s deploy-settings.xml
+- |
+  if [ "$TRAVIS_BRANCH" = 'master' ] || [ -n "$TRAVIS_TAG" ]; then \
+    openssl aes-256-cbc -K $encrypted_1fec94cce470_key -iv $encrypted_1fec94cce470_iv -in ci/signing.asc.enc -out ci/signing.asc -d && \
+    gpg2 --import ci/signing.asc && \
+    mvn deploy -P sign --settings ci/settings.xml
+  fi
 
 notifications:
   email:
     recipients:
-      - victor.gonzalez@geomati.co
+    - victor.gonzalez@geomati.co
   on_success: always
 

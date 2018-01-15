@@ -1,35 +1,28 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.geoladris.apps</groupId>
-		<artifactId>root</artifactId>
+		<groupId>com.github.geoladris</groupId>
+		<artifactId>apps</artifactId>
 		<version>7.0.0-SNAPSHOT</version>
 	</parent>
 
-	<packaging>war</packaging>
+	<groupId>com.github.geoladris.apps</groupId>
 	<artifactId>essential</artifactId>
-	<name>Geoladris Essential App</name>
+	<name>Essential</name>
+	<description>Essential app for Geoladris</description>
+	<url>https://github.com/geoladris/apps</url>
+	<packaging>war</packaging>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- See https://nodejs.org/en/download/ for latest node version -->
-		<node.version>v6.10.1</node.version>
-		<!-- See https://yarnpkg.com/ for latest yarn version -->
-		<yarn.version>v0.28.4</yarn.version>
-		<core.version>7.0.0-SNAPSHOT</core.version>
-		<plugins.version>7.0.0-SNAPSHOT</plugins.version>
-	</properties>
+	<scm>
+		<connection>scm:git:git://github.com/geoladris/apps.git</connection>
+		<developerConnection>scm:git:ssh://github.com:geoladris/apps.git</developerConnection>
+		<url>http://github.com/geoladris/apps/tree/master/essential</url>
+	</scm>
 
 	<repositories>
-		<repository>
-			<id>geoladris releases</id>
-			<url>http://nullisland.geomati.co:8082/repository/releases/</url>
-		</repository>
-		<repository>
-			<id>geoladris snapshots</id>
-			<url>http://nullisland.geomati.co:8082/repository/snapshots/</url>
-		</repository>
 		<repository>
 			<id>csgis releases</id>
 			<url>http://service.csgis.de/mvn/repository/releases/</url>
@@ -42,7 +35,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.geoladris</groupId>
+			<groupId>com.github.geoladris</groupId>
 			<artifactId>core</artifactId>
 			<version>${core.version}</version>
 		</dependency>
