@@ -47,57 +47,57 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.geoladris</groupId>
+			<groupId>com.github.geoladris</groupId>
 			<artifactId>core</artifactId>
 			<version>${core.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.geoladris</groupId>
+			<groupId>com.github.geoladris.plugins</groupId>
 			<artifactId>base</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.geoladris</groupId>
+			<groupId>com.github.geoladris.plugins</groupId>
 			<artifactId>auth</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.geoladris</groupId>
+			<groupId>com.github.geoladris.plugins</groupId>
 			<artifactId>layers-editor</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.geoladris</groupId>
+			<groupId>com.github.geoladris.plugins</groupId>
 			<artifactId>footnote</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.geoladris</groupId>
+			<groupId>com.github.geoladris.plugins</groupId>
 			<artifactId>feedback</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.geoladris</groupId>
+			<groupId>com.github.geoladris.plugins</groupId>
 			<artifactId>layer-time-sliders</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.geoladris</groupId>
+			<groupId>com.github.geoladris.plugins</groupId>
 			<artifactId>language-buttons</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.geoladris</groupId>
+			<groupId>com.github.geoladris.plugins</groupId>
 			<artifactId>time-slider</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.geoladris</groupId>
+			<groupId>com.github.geoladris.plugins</groupId>
 			<artifactId>tour</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.geoladris</groupId>
+			<groupId>com.github.geoladris.plugins</groupId>
 			<artifactId>layer-order</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
