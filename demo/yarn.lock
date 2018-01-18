@@ -22,8 +22,8 @@
     "@geoladris/core" dev
 
 "@geoladris/base@dev":
-  version "7.0.0-alpha.9"
-  resolved "https://registry.yarnpkg.com/@geoladris/base/-/base-7.0.0-alpha.9.tgz#048dce4b7f888ca476f9a94b839aadf168ffca32"
+  version "7.0.0-alpha.10"
+  resolved "https://registry.yarnpkg.com/@geoladris/base/-/base-7.0.0-alpha.10.tgz#52315e70312d2b0f60adcf60ae26a22e1beae154"
   dependencies:
     "@geoladris/core" dev
     highcharts "^4.1.5"
@@ -41,8 +41,8 @@
     requirejs "^2.1.8"
 
 "@geoladris/feedback@dev":
-  version "7.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@geoladris/feedback/-/feedback-7.0.0-alpha.4.tgz#5f73016c3864df879453feb3f10e393b3887b656"
+  version "7.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@geoladris/feedback/-/feedback-7.0.0-alpha.5.tgz#fc5fdee024a5d6eacb0433171de7e34fa0d6ccf6"
   dependencies:
     "@geoladris/core" dev
 
@@ -59,7 +59,7 @@
     "@geoladris/core" dev
     wellknown "^0.5.0"
 
-"@geoladris/language-buttons@^7.0.0-alpha.3":
+"@geoladris/language-buttons@dev":
   version "7.0.0-alpha.3"
   resolved "https://registry.yarnpkg.com/@geoladris/language-buttons/-/language-buttons-7.0.0-alpha.3.tgz#02ceb9a1da020f90b611c97ece522762ef69ba73"
   dependencies:
@@ -77,7 +77,7 @@
   dependencies:
     "@geoladris/core" dev
 
-"@geoladris/layers-editor@^7.0.0-alpha.6":
+"@geoladris/layers-editor@dev":
   version "7.0.0-alpha.6"
   resolved "https://registry.yarnpkg.com/@geoladris/layers-editor/-/layers-editor-7.0.0-alpha.6.tgz#a58dd889b9a836180df519ce97e77fb900ce74fa"
   dependencies:
@@ -101,9 +101,9 @@
   dependencies:
     "@geoladris/core" dev
 
-"@geoladris/tour@^7.0.0-alpha.4":
-  version "7.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@geoladris/tour/-/tour-7.0.0-alpha.4.tgz#498d431e401fadb8b90580b2e6d7b1ce3c8f9541"
+"@geoladris/tour@dev":
+  version "7.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@geoladris/tour/-/tour-7.0.0-alpha.5.tgz#765852d2b62e3205123878665e3d1eca8c69de2a"
   dependencies:
     "@geoladris/core" dev
 
