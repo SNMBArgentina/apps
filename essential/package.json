@@ -1,6 +1,6 @@
 {
   "name": "geoladris-core",
-  "version": "7.0.0-alpha.0",
+  "version": "7.1.0-SNAPSHOT",
   "dependencies": {
     "@csgis-geoladris/ui": "dev",
     "@geoladris/core": "dev"
