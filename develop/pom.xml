@@ -1,39 +1,32 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.geoladris.apps</groupId>
-		<artifactId>root</artifactId>
+		<groupId>com.github.geoladris</groupId>
+		<artifactId>apps</artifactId>
 		<version>7.0.0-SNAPSHOT</version>
 	</parent>
 
-	<packaging>war</packaging>
+	<groupId>com.github.geoladris.apps</groupId>
 	<artifactId>develop</artifactId>
-	<name>Geoladris Develop App</name>
+	<name>Develop</name>
+	<description>Develop app for Geoladris</description>
+	<url>https://github.com/geoladris/apps</url>
+	<packaging>war</packaging>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- See https://nodejs.org/en/download/ for latest node version -->
-		<node.version>v6.10.1</node.version>
-		<!-- See https://yarnpkg.com/ for latest yarn version -->
-		<yarn.version>v0.28.4</yarn.version>
-		<core.version>7.0.0-SNAPSHOT</core.version>
-		<plugins.version>7.0.0-SNAPSHOT</plugins.version>
-	</properties>
+	<scm>
+		<connection>scm:git:git://github.com/geoladris/apps.git</connection>
+		<developerConnection>scm:git:ssh://github.com:geoladris/apps.git</developerConnection>
+		<url>http://github.com/geoladris/apps/tree/dev_argentina/develop</url>
+	</scm>
 
 	<repositories>
 		<repository>
 			<id>geosolutions</id>
 			<name>GeoSolutions public maven repository</name>
 			<url>http://maven.geo-solutions.it/</url>
-		</repository>
-		<repository>
-			<id>geoladris releases</id>
-			<url>http://nullisland.geomati.co:8082/repository/releases/</url>
-		</repository>
-		<repository>
-			<id>geoladris snapshots</id>
-			<url>http://nullisland.geomati.co:8082/repository/snapshots/</url>
 		</repository>
 		<repository>
 			<id>csgis releases</id>
@@ -47,31 +40,68 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.geoladris</groupId>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.geoladris</groupId>
 			<artifactId>core</artifactId>
 			<version>${core.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.geoladris</groupId>
+			<groupId>com.github.geoladris.plugins</groupId>
 			<artifactId>base</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.geoladris</groupId>
+			<groupId>com.github.geoladris.plugins</groupId>
 			<artifactId>auth</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.geoladris</groupId>
+			<groupId>com.github.geoladris.plugins</groupId>
 			<artifactId>layers-editor</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.geoladris</groupId>
+			<groupId>com.github.geoladris.plugins</groupId>
+			<artifactId>footnote</artifactId>
+			<version>${plugins.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.geoladris.plugins</groupId>
 			<artifactId>feedback</artifactId>
 			<version>${plugins.version}</version>
 		</dependency>
-		<!-- Other deployments may access other databases, so it is responsibility
+		<dependency>
+			<groupId>com.github.geoladris.plugins</groupId>
+			<artifactId>layer-time-sliders</artifactId>
+			<version>${plugins.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.geoladris.plugins</groupId>
+			<artifactId>language-buttons</artifactId>
+			<version>${plugins.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.geoladris.plugins</groupId>
+			<artifactId>time-slider</artifactId>
+			<version>${plugins.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.geoladris.plugins</groupId>
+			<artifactId>tour</artifactId>
+			<version>${plugins.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.geoladris.plugins</groupId>
+			<artifactId>layer-order</artifactId>
+			<version>${plugins.version}</version>
+		</dependency>
+		<!-- Other deployments may access other databases, so it is responsibility 
 			of the application to include the necessary drivers -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -90,9 +120,52 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+		<dependency>
+			<groupId>de.csgis.geoladris</groupId>
+			<artifactId>ui</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-server</artifactId>
+			<version>8.1.16.v20140903</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-webapp</artifactId>
+			<version>8.1.16.v20140903</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-plus</artifactId>
+			<version>8.1.16.v20140903</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.6</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-catalina</artifactId>
+			<version>8.5.15</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.5</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<build>
-		<finalName>develop</finalName>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
@@ -132,4 +205,29 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>integration-tests</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<version>2.20</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>integration-test</goal>
+									<goal>verify</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
