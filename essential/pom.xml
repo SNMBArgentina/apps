@@ -22,17 +22,6 @@
 		<url>http://github.com/geoladris/apps/tree/master/essential</url>
 	</scm>
 
-	<repositories>
-		<repository>
-			<id>csgis releases</id>
-			<url>http://service.csgis.de/mvn/repository/releases/</url>
-		</repository>
-		<repository>
-			<id>csgis snapshots</id>
-			<url>http://service.csgis.de/mvn/repository/snapshots/</url>
-		</repository>
-	</repositories>
-
 	<dependencies>
 		<dependency>
 			<groupId>com.github.geoladris</groupId>
