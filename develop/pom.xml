@@ -29,12 +29,14 @@
 			<url>http://maven.geo-solutions.it/</url>
 		</repository>
 		<repository>
-			<id>csgis releases</id>
-			<url>http://service.csgis.de/mvn/repository/releases/</url>
-		</repository>
-		<repository>
-			<id>csgis snapshots</id>
-			<url>http://service.csgis.de/mvn/repository/snapshots/</url>
+			<id>snapshots-repo</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
 		</repository>
 	</repositories>
 
@@ -231,3 +233,4 @@
 		</profile>
 	</profiles>
 </project>
+
