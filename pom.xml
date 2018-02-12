@@ -42,6 +42,12 @@
 		<url>http://github.com/geoladris/apps/tree/master</url>
 	</scm>
 
+	<modules>
+		<module>demo</module>
+		<module>essential</module>
+		<module>develop</module>
+	</modules>
+
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
@@ -62,11 +68,6 @@
 		<core.version>7.0.0-SNAPSHOT</core.version>
 		<plugins.version>7.0.0-SNAPSHOT</plugins.version>
 	</properties>
-
-	<modules>
-		<module>demo</module>
-		<module>essential</module>
-	</modules>
 
 	<build>
 		<plugins>
