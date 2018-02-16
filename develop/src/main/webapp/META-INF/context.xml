@@ -32,7 +32,7 @@
     -->
 
 	<Resource name="jdbc/geoladris" auth="Container" type="javax.sql.DataSource"
-		driverClassName="org.postgresql.Driver" url="jdbc:postgresql://localhost:5432/geoladris"
-		username="user" password="password" maxActive="20" maxIdle="10"
+		driverClassName="org.postgresql.Driver" url="${GEOLADRIS_DB_URL}"
+		username="${GEOLADRIS_DB_USER}" password="${GEOLADRIS_DB_PASS}" maxActive="20" maxIdle="10"
 		maxWait="-1" />
 </Context>
