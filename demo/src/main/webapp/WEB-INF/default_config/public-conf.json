@@ -96,7 +96,7 @@
 				},
 				{
 					"id": "osm",
-					"text": "Es posible hacer las capas visibles o invisibles pinchando en este checkbox. Vamos a esconder esta capa.",
+					"text": "Es posible hacer las capas visibles o invisibles pinchando en este checkbox.",
 					"location": "left",
 					"next": {
 						"layer-visibility": [
@@ -112,15 +112,11 @@
 					"next": {
 						"show-layer-group": [
 							"landcover"
-						],
-						"layer-visibility": [
-							"selvamis_t",
-							true
 						]
 					}
 				},
 				{
-					"id": "inline-legend-button-selvamis_t",
+					"id": "inline-legend-button-pchbn06_3857",
 					"text": "También podemos mostrar la leyenda de algunas capas pinchando en este icono.",
 					"location": "right",
 					"next": {
@@ -148,15 +144,15 @@
 					"text": "Listo."
 				},
 				{
-					"id": "layer_info_button_selvamis_t",
+					"id": "layer_info_button_pchbn06_3857",
 					"text": "Otra de las cosas que se puede hacer con las capas es ver la información asociada, pinchando en este botón.",
 					"location": "right",
 					"next": {
-						"show-layer-info": "selvamis_t"
+						"show-layer-info": "pchbn06_3857"
 					}
 				},
 				{
-					"id": "layer_info_button_selvamis_t",
+					"id": "layer_info_button_pchbn06_3857",
 					"location": "right",
 					"text": "El panel se puede cerrar pulsando el aspa que hay en la ventana emergente.",
 					"next": {
@@ -179,18 +175,18 @@
 					"location": "top"
 				},
 				{
-					"id": "selvamis_t_transparency_slider",
+					"id": "pchbn06_3857_transparency_slider",
 					"text": "Al mover la barra, la transparencia se cambia en el mapa.",
 					"location": "bottom",
 					"next": {
 						"transparency-slider-changed": [
-							"selvamis_t",
+							"pchbn06_3857",
 							0.25
 						]
 					}
 				},
 				{
-					"id": "selvamis_t_transparency_slider",
+					"id": "pchbn06_3857_transparency_slider",
 					"text": "En el mapa ahora la selva Paranaense es transparente.",
 					"location": "bottom",
 					"next": {
