@@ -2,8 +2,8 @@
   "name": "geoladris-core",
   "version": "7.0.0-alpha.0",
   "dependencies": {
-    "@csgis-geoladris/ui": "dev",
-    "@geoladris/core": "dev"
+    "@csgis-geoladris/ui": "0.1.0",
+    "@geoladris/core": "~7.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.1",
