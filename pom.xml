@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.geoladris</groupId>
 	<artifactId>apps</artifactId>
-	<version>7.0.0</version>
+	<version>7.0.1-SNAPSHOT</version>
 	<name>Geoladris Applications</name>
 	<description>The plugins built with Geoladris, a framework for building modular web applications.</description>
 	<url>https://github.com/geoladris/apps</url>
